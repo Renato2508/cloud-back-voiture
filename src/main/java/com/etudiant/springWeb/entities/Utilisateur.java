@@ -11,45 +11,34 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Table(name = "utilisateur")
 public class Utilisateur implements UserDetails{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "idutilisateur")
-  int idUtilisateur;
+  @Column(name = "iduser")
+  int idUser;
 
-  String login;
-  String motdepasse;
+  @Column(name = "nom")
+  String nom;
+
+  @Column(name = "prenom")
+  String prenom;
+
+  @Column(name = "email")
+  String email;
+
+  @Column(name = "mdp")
+  String mdp;
+
   @Enumerated(EnumType.STRING)
   Role role;
 
-  public int getIdUtilisateur() {
-    return idUtilisateur;
-  }
-
-  public void setIdUtilisateur(int idUtilisateur) {
-    this.idUtilisateur = idUtilisateur;
-  }
-
-  public String getLogin() {
-    return login;
-  }
-
-  public void setLogin(String login) {
-    this.login = login;
-  }
-
-  public String getMotdepasse() {
-    return motdepasse;
-  }
-
-  public void setMotdepasse(String motdepasse) {
-    this.motdepasse = motdepasse;
-  }
-
+  
+  
   @Override
   public String toString() {
-    return "Utilisateur [login=" + login + ", motdepasse=" + motdepasse + "]";
+    return "Utilisateur [login=" + email + ", motdepasse=" + mdp + "]";
   }
 
   @Override
@@ -59,12 +48,12 @@ public class Utilisateur implements UserDetails{
 
   @Override
   public String getPassword() {
-    return getMotdepasse();
+    return getMdp();
   }
 
   @Override
   public String getUsername() {
-    return getLogin();
+    return getEmail();
   }
 
   @Override
@@ -87,11 +76,54 @@ public class Utilisateur implements UserDetails{
     return true;
   }
 
+
+
+
   public Role getRole() {
     return role;
   }
 
   public void setRole(Role role) {
     this.role = role;
+  }
+
+  public int getIdUser() {
+    return idUser;
+  }
+
+  public void setIdUser(int idUser) {
+    this.idUser = idUser;
+  }
+
+  public String getNom() {
+    return nom;
+  }
+
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
+
+  public String getPrenom() {
+    return prenom;
+  }
+
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getMdp() {
+    return mdp;
+  }
+
+  public void setMdp(String mdp) {
+    this.mdp = mdp;
   }
 }

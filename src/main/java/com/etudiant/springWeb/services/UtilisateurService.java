@@ -17,9 +17,9 @@ public class UtilisateurService {
   public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
     System.out.println("tafididtra");
 
-    Optional<Utilisateur> user = utilisateurRepository.findByLoginAndMotdepasse(
-      utilisateur.getLogin(),
-      utilisateur.getMotdepasse()
+    Optional<Utilisateur> user = utilisateurRepository.findByEmailAndMdp(
+      utilisateur.getEmail(),
+      utilisateur.getMdp()
     );
     System.out.println(user);
     if (user.isPresent()) {

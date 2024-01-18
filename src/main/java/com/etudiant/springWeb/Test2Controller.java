@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/free")
-public class TestController {
+@RequestMapping("/protected")
+public class Test2Controller {
 
     @GetMapping("/hello")
     public String hello() {
-        return "PROTECTED ADMIN Hello";
+        return "PROTECTED HELLO CLASS";
     }
 
-    @GetMapping("/free_hello")
-    public String free_ello() {
-        return "FREE Hello";
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/salut")
+    public String protected_hello() {
+        return "PRETECTED SALUT LES AMOUREUX CLASS";
     }
 }

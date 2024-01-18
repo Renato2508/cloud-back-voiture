@@ -1,0 +1,141 @@
+db.voiture.insertMany([
+  {
+    "_id": ObjectId("65a136a2e884bde4811c38b1"),
+    "immatriculation": "1234ABD",
+    "kilometre": 10000,
+    "prix": 190000000,
+    "annee": 2022,
+    "description": "voiture de première qualité",
+    "modele": {
+      "nom": "Shelby",
+      "marque":{
+        "_id": ObjectId("65a284f4e884bde4811c38b4"),
+        "nom": "Ford",
+        "logo": 12323
+      },
+      "categorie": {
+        _id: ObjectId('65a287cde884bde4811c38ba'),
+        nom: 'muscle'
+      }
+    },
+    "image": 1233434
+  },
+  {
+    "_id": ObjectId("65a136a2e884bde4811c38b2"),
+    "immatriculation": "5678TBR",
+    "kilometre": 16000,
+    "prix": 90000000,
+    "annee": 2012,
+    "description": "voiture d'occasion de première main",
+    "modele": {
+      "nom": "veron",
+      "marque":{
+        "_id": ObjectId("65a284f4e884bde4811c38b5"),
+        "nom": "Bugatti",
+        "logo": 1234
+      },
+      "categorie": {
+        _id: ObjectId('65a287cde884bde4811c38bb'),
+        nom: 'muscle'
+      }
+    },
+    "image": 1233434
+  },
+  {
+    "_id": ObjectId("65a136a2e884bde4811c38b3"),
+    "immatriculation": "5274TBL",
+    "kilometre": 9000,
+    "prix": 100000000,
+    "annee": 2020,
+    "description": "voiture de luxe",
+    "modele": {
+      "nom": "mustang",
+      "marque":{
+        "_id": ObjectId("65a284f4e884bde4811c38b6"),
+        "nom": "Ford",
+        "logo": 1234
+      },
+      "categorie": {
+        _id: ObjectId('65a287cde884bde4811c38bc'),
+        nom: 'muscle'
+      }
+    },
+    "image": 1233434
+  }
+])
+
+db.marque.insertMany([
+  {
+    "_id": ObjectId("65a284f4e884bde4811c38b4"),
+    "nom": "Ford",
+    "logo": 12323
+  },
+  {
+    "_id": ObjectId("65a284f4e884bde4811c38b5"),
+    "nom": "Bugatti",
+    "logo": 1234
+  },
+  {
+    "_id": ObjectId("65a284f4e884bde4811c38b6"),
+    "nom": "Ford",
+    "logo": 1234
+  }
+])
+
+
+db.categorie.insertMany([
+{
+  _id: ObjectId('65a287cde884bde4811c38ba'),
+  nom: 'muscle'
+},
+{
+  _id: ObjectId('65a287cde884bde4811c38bb'),
+  nom: 'muscle'
+},
+{
+  _id: ObjectId('65a287cde884bde4811c38bc'),
+  nom: 'muscle'
+}
+])
+
+db.model.insertMany([
+  {
+    "_id": ObjectId("65a28cb0e884bde4811c38bd"),
+    "nom": "Shelby",
+    "marque": {
+      "_id": ObjectId("65a284f4e884bde4811c38b4"),
+      "nom": "Ford",
+      "logo": 12323
+    },
+    "categorie": {
+      "_id": ObjectId("65a287cde884bde4811c38ba"),
+      "nom": "muscle"
+    }
+  },
+  {
+    "_id": ObjectId("65a28cb0e884bde4811c38be"),
+    "nom": "veron",
+    "marque": {
+      "_id": ObjectId("65a284f4e884bde4811c38b5"),
+      "nom": "Bugatti",
+      "logo": 1234
+    },
+    "categorie": {
+      "_id": ObjectId("65a287cde884bde4811c38bb"),
+      "nom": "muscle"
+    }
+  },
+  {
+    "_id": ObjectId("65a28cb0e884bde4811c38bf"),
+    "nom": "mustang",
+    "marque": {
+      "_id": ObjectId("65a284f4e884bde4811c38b6"),
+      "nom": "Ford",
+      "logo": 1234
+    },
+    "categorie": {
+      "_id": ObjectId("65a287cde884bde4811c38bc"),
+      "nom": "muscle"
+    }
+  }
+])

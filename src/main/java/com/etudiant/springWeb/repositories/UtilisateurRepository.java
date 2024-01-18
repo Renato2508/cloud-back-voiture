@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UtilisateurRepository
   extends JpaRepository<Utilisateur, Integer> {
-  Optional<Utilisateur> findByLoginAndMotdepasse(
-    String login,
-    String motdepasse
+  Optional<Utilisateur> findByEmailAndMdp(
+    String email,
+    String mdp
   );
-  Optional<Utilisateur> findByLogin(String login);
+  Optional<Utilisateur> findByEmail(String email);
 
 }

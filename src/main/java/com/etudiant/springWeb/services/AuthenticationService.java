@@ -31,8 +31,8 @@ public class AuthenticationService {
 
   public AuthenticationResponse register(RegisterRequest request) {
     var user = new Utilisateur();
-    user.setLogin(request.getLogin());
-    user.setMotdepasse(passwordEncoder.encode(request.getMotDePasse()));
+    user.setEmail(request.getLogin());
+    user.setMdp(passwordEncoder.encode(request.getMotDePasse()));
     String role = request.getRole();
     if(role.compareToIgnoreCase("admin") == 0){
       user.setRole(Role.ROLE_ADMIN);
@@ -45,7 +45,7 @@ public class AuthenticationService {
   }
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
-    System.out.println(utilisateurRepository.findByLogin(request.getLogin()));
+    System.out.println(utilisateurRepository.findByEmail(request.getLogin()));
     System.out.println(request.getLogin());
     System.out.println(request.getMotDePasse());
     authenticationManager.authenticate(
@@ -55,7 +55,7 @@ public class AuthenticationService {
       )
     );
     var user = utilisateurRepository
-      .findByLogin(request.getLogin())
+      .findByEmail(request.getLogin())
       .orElseThrow();
     var token = jwtUtil.generateToken(user);
 

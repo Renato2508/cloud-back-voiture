@@ -1,0 +1,4 @@
+annonce 
+    valider = 3
+    en attente = 0
+    refuser = 1 

@@ -48,10 +48,11 @@ public class SecurityConfig {
         req
           .requestMatchers("/login/**")
           .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
-          .requestMatchers("/error/**")
-          .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
-                .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
-
+          //.requestMatchers("/error/**")
+          //.permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
+          //      .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
+          .requestMatchers("/free/**")
+          .permitAll()
           .anyRequest()
           .authenticated(); // Exige une authentification pour toutes les autres requêtes
       })

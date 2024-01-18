@@ -23,7 +23,7 @@ public class ApplicationConfig {
   public UserDetailsService userDetailsService() {
     return login ->
       repository
-        .findByLogin(login)
+        .findByEmail(login)
         .orElseThrow(() -> new UsernameNotFoundException("User "+login+" not found"));
   }
 
