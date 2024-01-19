@@ -1,14 +1,15 @@
-package com.etudiant.springWeb.entities;
+package com.example.demo.authentication.etudiant.springWeb.entities;
 
 import java.util.Collection;
 
 import java.util.List;
 
-import com.etudiant.springWeb.tools.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.example.demo.authentication.etudiant.springWeb.tools.Role;
 
 @Entity
 @Table(name = "utilisateur")

@@ -1,18 +1,19 @@
-package com.etudiant.springWeb.services;
+package com.example.demo.authentication.etudiant.springWeb.services;
 
-import com.etudiant.springWeb.auth.AuthenticationRequest;
-import com.etudiant.springWeb.auth.AuthenticationResponse;
-import com.etudiant.springWeb.auth.RegisterRequest;
-import com.etudiant.springWeb.entities.Utilisateur;
-import com.etudiant.springWeb.repositories.UtilisateurRepository;
-import com.etudiant.springWeb.tools.JwtUtil;
-import com.etudiant.springWeb.tools.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationRequest;
+import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationResponse;
+import com.example.demo.authentication.etudiant.springWeb.auth.RegisterRequest;
+import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
+import com.example.demo.authentication.etudiant.springWeb.repositories.UtilisateurRepository;
+import com.example.demo.authentication.etudiant.springWeb.tools.JwtUtil;
+import com.example.demo.authentication.etudiant.springWeb.tools.Role;
 
 @Service
 public class AuthenticationService {
@@ -34,11 +35,18 @@ public class AuthenticationService {
     user.setEmail(request.getLogin());
     user.setMdp(passwordEncoder.encode(request.getMotDePasse()));
     String role = request.getRole();
-    if(role.compareToIgnoreCase("admin") == 0){
+
+    try {
+      if(role.compareToIgnoreCase("admin") == 0){
       user.setRole(Role.ROLE_ADMIN);
     }else{
       user.setRole(Role.ROLE_USER);
     }
+    } catch (NullPointerException e) {
+      user.setRole(Role.ROLE_USER); 
+    }
+
+    
     utilisateurRepository.save(user);
     var jwtToken = jwtUtil.generateToken(user);
     return new AuthenticationResponse(jwtToken);

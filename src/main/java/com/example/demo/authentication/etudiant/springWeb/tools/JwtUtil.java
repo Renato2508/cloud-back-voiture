@@ -1,4 +1,4 @@
-package com.etudiant.springWeb.tools;
+package com.example.demo.authentication.etudiant.springWeb.tools;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,6 +16,8 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
 
 @Service
 public class JwtUtil {
@@ -55,6 +57,10 @@ public class JwtUtil {
             .iterator()
             .next();
     extraClaims.put("role", role);
+
+    Utilisateur u = (Utilisateur)userDetails;
+    int id = u.getIdUser();
+    extraClaims.put("iduser", id);
     return Jwts
       .builder()
       .setClaims(extraClaims)
@@ -64,6 +70,15 @@ public class JwtUtil {
       .signWith(getSignInKey(), SignatureAlgorithm.HS256)
       .compact();
   }
+
+  public int extractID(String token) {
+    return extractClaimByName(token, "iduser", Integer.class);
+  }
+
+  public <T> T extractClaimByName(String token, String claimName, Class<T> valueType) {
+    final Claims allClaims = extractAllClaims(token);
+    return allClaims.get(claimName, valueType);
+}
 
   public String extractLogin(String token) {
     return extractClaim(token, Claims::getSubject);
@@ -92,6 +107,8 @@ public class JwtUtil {
   }
 
   private Claims extractAllClaims(String token) {
+    System.out.println("!!!!! TOKEN ");
+    System.out.println(token);
     return Jwts
       .parserBuilder()
       .setSigningKey(getSignInKey())

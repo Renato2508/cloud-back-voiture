@@ -1,4 +1,4 @@
-package com.etudiant.springWeb;
+package com.example.demo.authentication.etudiant.springWeb;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;

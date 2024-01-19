@@ -1,11 +1,12 @@
-package com.etudiant.springWeb.services;
+package com.example.demo.authentication.etudiant.springWeb.services;
 
 import java.util.Optional;
 
-import com.etudiant.springWeb.entities.Utilisateur;
-import com.etudiant.springWeb.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
+import com.example.demo.authentication.etudiant.springWeb.repositories.UtilisateurRepository;
 
 
 @Service

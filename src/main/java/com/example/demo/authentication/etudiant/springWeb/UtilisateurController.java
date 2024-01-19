@@ -1,15 +1,16 @@
-package com.etudiant.springWeb;
+package com.example.demo.authentication.etudiant.springWeb;
 
 import java.util.Map;
 
-import com.etudiant.springWeb.auth.AuthenticationRequest;
-import com.etudiant.springWeb.auth.RegisterRequest;
-import com.etudiant.springWeb.services.AuthenticationService;
-import com.etudiant.springWeb.tools.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationRequest;
+import com.example.demo.authentication.etudiant.springWeb.auth.RegisterRequest;
+import com.example.demo.authentication.etudiant.springWeb.services.AuthenticationService;
+import com.example.demo.authentication.etudiant.springWeb.tools.Util;
 
 @RestController
 @RequestMapping("/login")

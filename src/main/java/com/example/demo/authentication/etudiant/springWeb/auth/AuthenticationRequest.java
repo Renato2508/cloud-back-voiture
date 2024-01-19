@@ -1,4 +1,4 @@
-package com.etudiant.springWeb.auth;
+package com.example.demo.authentication.etudiant.springWeb.auth;
 
 public class AuthenticationRequest {
     private String login;

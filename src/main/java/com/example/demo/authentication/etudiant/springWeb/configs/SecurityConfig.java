@@ -1,9 +1,7 @@
-package com.etudiant.springWeb.configs;
+package com.example.demo.authentication.etudiant.springWeb.configs;
 
 import java.util.Arrays;
 
-import com.etudiant.springWeb.requestFilter.JwtRequestFilter;
-import com.etudiant.springWeb.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.example.demo.authentication.etudiant.springWeb.requestFilter.JwtRequestFilter;
+import com.example.demo.authentication.etudiant.springWeb.services.UtilisateurService;
 
 @Configuration
 @EnableWebSecurity

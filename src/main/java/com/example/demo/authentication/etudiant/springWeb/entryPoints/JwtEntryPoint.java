@@ -1,4 +1,4 @@
-package com.etudiant.springWeb.entryPoints;
+package com.example.demo.authentication.etudiant.springWeb.entryPoints;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;

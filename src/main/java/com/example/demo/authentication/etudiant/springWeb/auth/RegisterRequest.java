@@ -1,6 +1,6 @@
-package com.etudiant.springWeb.auth;
+package com.example.demo.authentication.etudiant.springWeb.auth;
 
-import com.etudiant.springWeb.tools.Role;
+import com.example.demo.authentication.etudiant.springWeb.tools.Role;
 
 public class RegisterRequest {
 

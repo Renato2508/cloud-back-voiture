@@ -1,6 +1,5 @@
-package com.etudiant.springWeb.requestFilter;
+package com.example.demo.authentication.etudiant.springWeb.requestFilter;
 
-import com.etudiant.springWeb.tools.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.example.demo.authentication.etudiant.springWeb.tools.JwtUtil;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {

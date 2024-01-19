@@ -1,6 +1,5 @@
-package com.etudiant.springWeb.configs;
+package com.example.demo.authentication.etudiant.springWeb.configs;
 
-import com.etudiant.springWeb.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.demo.authentication.etudiant.springWeb.repositories.UtilisateurRepository;
 
 @Configuration
 public class ApplicationConfig {

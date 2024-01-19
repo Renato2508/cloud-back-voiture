@@ -1,4 +1,4 @@
-package com.etudiant.springWeb.tools;
+package com.example.demo.authentication.etudiant.springWeb.tools;
 
 import java.util.HashMap;
 import java.util.Map;
