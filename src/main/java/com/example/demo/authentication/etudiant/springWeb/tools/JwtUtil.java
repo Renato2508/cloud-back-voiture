@@ -26,6 +26,20 @@ public class JwtUtil {
   private final String SECRET_KEY =
     "DvxMWzlQ2d6zSQ77EseNcGI1x0hhpCVJwtXBIx4c7uUlDSSRCD4kBXFyzEY2zLdN";
 
+
+  // extraire un Utilisateur à partir du token
+  public Utilisateur extractUser(String token){
+      String t = token.substring(7);
+      int id1 = this.extractID(t);
+      Utilisateur sender = new Utilisateur();
+      sender.setIdUser(id1);
+      sender.setNom(this.extractNom(t));
+      sender.setPrenom(this.extractPrenom(t));
+
+      return sender;
+
+  }
+
   public Boolean isTokenExpired(String token) {
     return extractExpiration(token).before(new Date());
   }
@@ -57,10 +71,18 @@ public class JwtUtil {
             .iterator()
             .next();
     extraClaims.put("role", role);
-
+    
+    // ajout des différents extraclaims nécessaires
     Utilisateur u = (Utilisateur)userDetails;
     int id = u.getIdUser();
+    String nom = u.getNom();
+    String prenom = u.getPrenom();
+
     extraClaims.put("iduser", id);
+    extraClaims.put("nom", nom);
+    extraClaims.put("prenom", prenom);
+
+
     return Jwts
       .builder()
       .setClaims(extraClaims)
@@ -71,8 +93,18 @@ public class JwtUtil {
       .compact();
   }
 
+
+  // extraction des divers claims
   public int extractID(String token) {
     return extractClaimByName(token, "iduser", Integer.class);
+  }
+
+  public String extractNom(String token) {
+    return extractClaimByName(token, "nom", String.class);
+  }
+
+  public String extractPrenom(String token) {
+    return extractClaimByName(token, "prenom", String.class);
   }
 
   public <T> T extractClaimByName(String token, String claimName, Class<T> valueType) {
@@ -107,8 +139,8 @@ public class JwtUtil {
   }
 
   private Claims extractAllClaims(String token) {
-    System.out.println("!!!!! TOKEN ");
-    System.out.println(token);
+    //System.out.println("!!!!! TOKEN ");
+    //System.out.println(token);
     return Jwts
       .parserBuilder()
       .setSigningKey(getSignInKey())

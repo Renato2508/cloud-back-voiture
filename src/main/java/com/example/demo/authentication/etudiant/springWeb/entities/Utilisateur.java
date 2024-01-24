@@ -36,7 +36,8 @@ public class Utilisateur implements UserDetails{
   Role role;
 
   
-  
+  public Utilisateur(){}
+
   @Override
   public String toString() {
     return "Utilisateur [login=" + email + ", motdepasse=" + mdp + "]";

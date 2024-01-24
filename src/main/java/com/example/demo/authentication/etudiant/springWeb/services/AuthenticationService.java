@@ -6,6 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationRequest;
 import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationResponse;
@@ -30,10 +31,13 @@ public class AuthenticationService {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+  @Transactional
   public AuthenticationResponse register(RegisterRequest request) {
     var user = new Utilisateur();
     user.setEmail(request.getLogin());
     user.setMdp(passwordEncoder.encode(request.getMotDePasse()));
+    user.setNom(request.getNom());
+    user.setPrenom(request.getPrenom());
     String role = request.getRole();
 
     try {
@@ -49,13 +53,19 @@ public class AuthenticationService {
     
     utilisateurRepository.save(user);
     var jwtToken = jwtUtil.generateToken(user);
-    return new AuthenticationResponse(jwtToken);
+    System.out.println( "----> VOTRE TOKEN: "+jwtToken);
+
+    String nom = jwtUtil.extractNom(jwtToken);
+    String prenom = jwtUtil.extractPrenom(jwtToken);
+    int id = jwtUtil.extractID(jwtToken);
+
+    return new AuthenticationResponse(jwtToken,id,nom, prenom);
   }
 
-  public AuthenticationResponse authenticate(AuthenticationRequest request) {
-    System.out.println(utilisateurRepository.findByEmail(request.getLogin()));
-    System.out.println(request.getLogin());
-    System.out.println(request.getMotDePasse());
+  public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception{
+    System.out.println("----> USER FOUND   "+utilisateurRepository.findByEmail(request.getLogin()));
+    System.out.println("----> LOGIN   "+request.getLogin());
+    System.out.println("----> PWD GIVEN   "+request.getMotDePasse());
     authenticationManager.authenticate(
       new UsernamePasswordAuthenticationToken(
         request.getLogin(),
@@ -64,10 +74,13 @@ public class AuthenticationService {
     );
     var user = utilisateurRepository
       .findByEmail(request.getLogin())
-      .orElseThrow();
-    var token = jwtUtil.generateToken(user);
+      .orElseThrow(() -> new Exception("Erreur d'authentification"));
 
-    AuthenticationResponse response = new AuthenticationResponse(token);
-    return response;
+    var token = jwtUtil.generateToken(user);
+    String nom = jwtUtil.extractNom(token);
+    String prenom = jwtUtil.extractPrenom(token);
+    int id = jwtUtil.extractID(token);
+    System.out.println("------> AUTH SUCCESSFUL");
+    return new AuthenticationResponse(token,id,nom, prenom);
   }
 }

@@ -1,3 +1,5 @@
+create database voiture;
+\c voiture
 CREATE TABLE annonce(
     idAnnonce serial primary key,
     datepublication date,
@@ -14,4 +16,13 @@ CREATE TABLE favoris(
     iduser int,
     idAnnonce int,
     dateabo date
+);
+
+create table utilisateur(
+    iduser serial primary key,
+    nom varchar,
+    prenom varchar,
+    email varchar,
+    mdp varchar,
+    role varchar
 );

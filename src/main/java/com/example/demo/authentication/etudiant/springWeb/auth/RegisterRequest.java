@@ -6,6 +6,8 @@ public class RegisterRequest {
 
   private String login;
   private String motDePasse;
+  private String nom;
+  private String prenom;
   private String role;
 
   public String getRole(){return  role;}
@@ -26,5 +28,21 @@ public class RegisterRequest {
 
   public void setMotDePasse(String motDePasse) {
     this.motDePasse = motDePasse;
+  }
+
+  public String getNom() {
+    return nom;
+  }
+
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
+
+  public String getPrenom() {
+    return prenom;
+  }
+
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
   }
 }
