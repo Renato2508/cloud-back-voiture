@@ -3,7 +3,6 @@ package com.example.demo.messages.services;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,7 +15,6 @@ import com.example.demo.messages.documents.Message;
 import com.example.demo.messages.repositories.DiscussionRepository;
 import com.example.demo.messages.repositories.MessageRepository;
 
-import java.util.ArrayList;
 @Service
 public class DiscussionService {
     @Autowired
