@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.voiture.VoitureInsert;
+import com.example.demo.annex.VoitureFilter;
+import com.example.demo.annex.VoitureInsert;
 import com.example.demo.exeption.VoitureException;
 import com.example.demo.response.Response;
 import com.example.demo.services.voiture.VoitureService;
@@ -64,6 +65,16 @@ public class VoitureControlle {
             response.setInformation(e.getInsertionException());
             e.printStackTrace();
             return response;
+        }
+    }
+
+    @PostMapping("/filter")
+    public Response filter(@RequestBody VoitureFilter nouvelleVoiture) {
+        try {
+            return  new Response("200", false, voitureService.findByFilter(nouvelleVoiture));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  new Response("500", true, null);
         }
     }
 }

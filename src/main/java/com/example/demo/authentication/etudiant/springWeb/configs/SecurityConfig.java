@@ -46,6 +46,7 @@ public class SecurityConfig {
         req
           .requestMatchers("/login/**").permitAll() 
           .requestMatchers("/free/**").permitAll()
+          .requestMatchers("/voitures/**").permitAll()
           .anyRequest()
           .authenticated(); // Exige une authentification pour toutes les autres requêtes
       })

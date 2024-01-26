@@ -26,3 +26,8 @@ create table utilisateur(
     mdp varchar,
     role varchar
 );
+
+CREATE TABLE pourcentage(
+    idpourcentage serial primary key,
+    pourcentage decimal
+);

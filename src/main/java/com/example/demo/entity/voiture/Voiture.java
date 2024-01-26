@@ -24,8 +24,14 @@ public class Voiture {
     @JsonProperty("prix")
     private double prix;
 
-    @JsonProperty("annee")
-    private LocalDate annee;
+    @JsonProperty("anneesortie")
+    private int annee;
+
+    @JsonProperty("dateaanonce")
+    private LocalDate dateaanonce;
+
+    @JsonProperty("commission")
+    private double commission;
 
     @JsonProperty("description")
     private String description;
@@ -35,8 +41,9 @@ public class Voiture {
 
     // Constructeurs, getters, setters...
 
-    public Voiture(String immatriculation, int kilometre, double prix, LocalDate annee, String description, Model modele) {
+    public Voiture(String immatriculation, int kilometre, double prix, int annee, LocalDate dateaanonce, String description, Model modele) {
         this.immatriculation = immatriculation;
+        this.dateaanonce = dateaanonce;
         this.kilometre = kilometre;
         this.prix = prix;
         this.annee = annee;
@@ -80,11 +87,11 @@ public class Voiture {
         this.prix = prix;
     }
 
-    public LocalDate getAnnee() {
+    public int getAnnee() {
         return annee;
     }
 
-    public void setAnnee(LocalDate annee) {
+    public void setAnnee(int annee) {
         this.annee = annee;
     }
 
@@ -102,6 +109,22 @@ public class Voiture {
 
     public void setModele(Model modele) {
         this.modele = modele;
+    }
+
+    public LocalDate getDateaanonce() {
+        return dateaanonce;
+    }
+
+    public void setDateaanonce(LocalDate dateaanonce) {
+        this.dateaanonce = dateaanonce;
+    }
+
+    public double getCommission() {
+        return commission;
+    }
+
+    public void setCommission(double commission) {
+        this.commission = commission;
     }
 }
 
