@@ -1,4 +1,4 @@
-package com.example.demo.authentication.etudiant.springWeb;
+package com.example.demo.authentication.etudiant.springWeb.controller;
 
 import java.util.HashMap;
 import java.util.Map;

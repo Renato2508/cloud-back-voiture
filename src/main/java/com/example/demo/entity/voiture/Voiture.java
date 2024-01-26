@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "voitures")
@@ -23,7 +25,7 @@ public class Voiture {
     private double prix;
 
     @JsonProperty("annee")
-    private int annee;
+    private LocalDate annee;
 
     @JsonProperty("description")
     private String description;
@@ -32,6 +34,19 @@ public class Voiture {
     private Model modele;
 
     // Constructeurs, getters, setters...
+
+    public Voiture(String immatriculation, int kilometre, double prix, LocalDate annee, String description, Model modele) {
+        this.immatriculation = immatriculation;
+        this.kilometre = kilometre;
+        this.prix = prix;
+        this.annee = annee;
+        this.description = description;
+        this.modele = modele;
+    }
+
+    public Voiture() {
+
+    }
 
     public String getId() {
         return id;
@@ -65,11 +80,11 @@ public class Voiture {
         this.prix = prix;
     }
 
-    public int getAnnee() {
+    public LocalDate getAnnee() {
         return annee;
     }
 
-    public void setAnnee(int annee) {
+    public void setAnnee(LocalDate annee) {
         this.annee = annee;
     }
 

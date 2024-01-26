@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.voiture.Voiture;
+import com.example.demo.entity.voiture.VoitureInsert;
 import com.example.demo.exeption.VoitureException;
 import com.example.demo.response.Response;
 import com.example.demo.services.voiture.VoitureService;
@@ -51,7 +51,7 @@ public class VoitureControlle {
     }
     
     @PostMapping("/ajouter")
-    public Response ajouterVoiture(@RequestBody Voiture nouvelleVoiture) {
+    public Response ajouterVoiture(@RequestBody VoitureInsert nouvelleVoiture) {
         response = new Response();
         try {
             voitureService.insererNouvelleVoiture(nouvelleVoiture);

@@ -1,22 +1,26 @@
 package com.example.demo.services.voiture;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.voiture.Model;
 import com.example.demo.entity.voiture.Voiture;
+import com.example.demo.entity.voiture.VoitureInsert;
 import com.example.demo.exeption.VoitureException;
+import com.example.demo.repository.voiture.ModelRepository;
 import com.example.demo.repository.voiture.VoitureRepository;
 
 @Service
 public class VoitureService {
 
     private final VoitureRepository voitureRepository;
+    private final ModelRepository modelRepository;
 
-    @Autowired
-    public VoitureService(VoitureRepository voitureRepository) {
+    public VoitureService(VoitureRepository voitureRepository, ModelRepository modelRepository) {
         this.voitureRepository = voitureRepository;
+        this.modelRepository = modelRepository;
     }
 
     // trouver les voiture par marque
@@ -40,12 +44,19 @@ public class VoitureService {
     }
 
     // insertion d'une nouvelle voiture
-    public void insererNouvelleVoiture(Voiture nouvelleVoiture) throws VoitureException {
+    public void insererNouvelleVoiture(VoitureInsert nouvelleVoiture) throws VoitureException {
         if (nouvelleVoiture != null) {
-            voitureRepository.save(nouvelleVoiture);
+            Optional<Model> modelUse = modelRepository.findById(nouvelleVoiture.getIdmodele());
+            Voiture newVaika = this.createObjectVoiture(nouvelleVoiture, modelUse.get());
+            voitureRepository.save(newVaika);
         } else {
             throw new VoitureException();
         }
+    }
+
+    public Voiture createObjectVoiture(VoitureInsert nouvelleVoiture, Model modelUse){
+        Voiture newVaika = new Voiture(nouvelleVoiture.getImmatriculation(), nouvelleVoiture.getKilometre(), nouvelleVoiture.getPrix(), nouvelleVoiture.getAnnee(), nouvelleVoiture.getDescription(), modelUse);
+        return newVaika;
     }
 
     public List<Voiture> voitureExist(List<Voiture> voiture) throws VoitureException{
