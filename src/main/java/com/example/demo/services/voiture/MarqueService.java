@@ -1,6 +1,5 @@
 package com.example.demo.services.voiture;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import com.example.demo.repository.voiture.MarqueRepository;
 public class MarqueService {
     private final MarqueRepository marqueRepository;
 
-    @Autowired
     public MarqueService(MarqueRepository marqueRepository) {
         this.marqueRepository = marqueRepository;
     }

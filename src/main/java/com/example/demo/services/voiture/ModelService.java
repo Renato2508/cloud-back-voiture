@@ -1,8 +1,8 @@
 package com.example.demo.services.voiture;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.voiture.Model;
@@ -10,9 +10,8 @@ import com.example.demo.repository.voiture.ModelRepository;
 
 @Service
 public class ModelService {
-        private final ModelRepository modelRepository;
+    private final ModelRepository modelRepository;
 
-    @Autowired
     public ModelService(ModelRepository modelRepository) {
         this.modelRepository = modelRepository;
     }
@@ -23,9 +22,13 @@ public class ModelService {
         return model;
     }
 
-    public List<Model> findModelUse(String idmarque, String idcategorie){
+    public List<Model> findModelUse(String idmarque){
         // Utilisez la méthode du référentiel pour récupérer tous les documents
-        List<Model> model = modelRepository.findByMarque_IdAndCategorie_Id(idmarque , idcategorie);
+        List<Model> model = modelRepository.findByMarque_Id(idmarque);
         return model;
+    }
+
+    public Optional<Model> findById(String idModel){
+        return modelRepository.findById(idModel);
     }
 }

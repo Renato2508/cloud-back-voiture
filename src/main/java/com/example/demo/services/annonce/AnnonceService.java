@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.function.Function;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.annonce.Annonce;
@@ -22,9 +21,7 @@ public class AnnonceService {
     private final AnnonceRepository annonceRepository;
     private VoitureService voitureService;
     private UserService userService;
-
-
-    @Autowired
+  
     public AnnonceService(AnnonceRepository annonceRepository, VoitureService voitureService, UserService userService) {
         this.annonceRepository = annonceRepository;
         this.voitureService = voitureService;

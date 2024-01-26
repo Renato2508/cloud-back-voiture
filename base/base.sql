@@ -9,4 +9,3 @@ create table utilisateur(
 
 ALTER TABLE utilisateur
 ADD COLUMN role VARCHAR;
-
