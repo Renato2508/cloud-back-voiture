@@ -2,13 +2,9 @@ create database voiture;
 \c voiture
 CREATE TABLE annonce(
     idAnnonce serial primary key,
-    datepublication date,
     etat int,
-    commission int,
     idvoiture VARCHAR(70),
-    sommepayee numeric,
-    datepayement date,
-    iduser VARCHAR(70)
+    iduser int
 );
 
 CREATE TABLE favoris(

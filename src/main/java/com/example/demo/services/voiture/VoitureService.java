@@ -55,11 +55,11 @@ public class VoitureService {
     }
 
     // insertion d'une nouvelle voiture
-    public void insererNouvelleVoiture(VoitureInsert nouvelleVoiture) throws VoitureException {
+    public Voiture insererNouvelleVoiture(VoitureInsert nouvelleVoiture) throws VoitureException {
         if (nouvelleVoiture != null) {
             Optional<Model> modelUse = modelRepository.findById(nouvelleVoiture.getIdmodele());
             Voiture newVaika = this.createObjectVoiture(nouvelleVoiture, modelUse.get());
-            voitureRepository.save(newVaika);
+            return voitureRepository.save(newVaika);
         } else {
             throw new VoitureException();
         }
