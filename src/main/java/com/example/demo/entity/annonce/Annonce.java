@@ -1,12 +1,12 @@
 package com.example.demo.entity.annonce;
 
-import java.sql.Date;
-
 import com.example.demo.entity.user.User;
 import com.example.demo.entity.voiture.Voiture;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -16,30 +16,19 @@ import jakarta.persistence.Transient;
 public class Annonce {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idannonce")
     int idannonce;
 
     @Column(name = "iduser")
-    String iduser;
+    int iduser;
 
     @Column(name = "idvoiture")
     String idvoiture;
 
-    @Column(name = "datepublication")
-    Date publication;
-
     @Column(name = "etat")
     int etat;
-
-    @Column(name = "commission")
-    double commission; 
     
-    @Column(name = "sommepayee")
-    double sommepayee;
-
-    @Column(name = "datepayement")
-    Date payement;
-
     @Transient
     Voiture voiture;
 
@@ -47,6 +36,15 @@ public class Annonce {
     User user;
 
     // Constructeur ,getters, setters
+
+    public Annonce(int iduser, String idvoiture, int etat) {
+        this.iduser = iduser;
+        this.idvoiture = idvoiture;
+        this.etat = etat;
+    }
+
+    public Annonce() {
+    }
 
     public User getUser() {
         return user;
@@ -64,11 +62,11 @@ public class Annonce {
         this.idannonce = idannonce;
     }
 
-    public String getIduser() {
+    public int getIduser() {
         return iduser;
     }
 
-    public void setIduser(String iduser) {
+    public void setIduser(int iduser) {
         this.iduser = iduser;
     }
 
@@ -80,44 +78,12 @@ public class Annonce {
         this.idvoiture = idvoiture;
     }
 
-    public Date getPublication() {
-        return publication;
-    }
-
-    public void setPublication(Date publication) {
-        this.publication = publication;
-    }
-
     public int getEtat() {
         return etat;
     }
 
     public void setEtat(int etat) {
         this.etat = etat;
-    }
-
-    public double getCommission() {
-        return commission;
-    }
-
-    public void setCommission(double commission) {
-        this.commission = commission;
-    }
-
-    public double getSommepayee() {
-        return sommepayee;
-    }
-
-    public void setSommepayee(double sommepayee) {
-        this.sommepayee = sommepayee;
-    }
-
-    public Date getPayement() {
-        return payement;
-    }
-
-    public void setPayement(Date payement) {
-        this.payement = payement;
     }
 
     public Voiture getVoiture() {

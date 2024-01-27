@@ -11,4 +11,3 @@ import java.util.List;
 public interface VoitureRepository extends MongoRepository<Voiture, String> {
     List<Voiture> findByImmatriculation(String marque);
 }
-

@@ -1,7 +1,5 @@
 package com.example.demo.services.annonce;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.annonce.Favoris;
@@ -15,7 +13,7 @@ public class FavorisServices {
         this.favorisRepository = favorisRepository;
     }
 
-    public List<Favoris> findAll(){
-        return this.favorisRepository.findAll();
+    public Favoris save(Favoris favoris){
+        return this.favorisRepository.save(favoris);
     }
 }

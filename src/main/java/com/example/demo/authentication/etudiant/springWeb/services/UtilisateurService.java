@@ -1,5 +1,6 @@
 package com.example.demo.authentication.etudiant.springWeb.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,21 @@ public class UtilisateurService {
 
   
   public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
-    System.out.println("tafididtra");
-
     Optional<Utilisateur> user = utilisateurRepository.findByEmailAndMdp(
       utilisateur.getEmail(),
       utilisateur.getMdp()
     );
-    System.out.println(user);
     if (user.isPresent()) {
       System.out.println(user.get());
     }
     return user;
+  }
+
+  public List<Utilisateur> getAllUsers(){
+    return utilisateurRepository.findAll();
+  }
+
+  public Utilisateur findById(int iduser){
+      return utilisateurRepository.findById(iduser).get();
   }
 }
