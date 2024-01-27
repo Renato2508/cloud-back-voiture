@@ -41,10 +41,10 @@ public class DetailController {
     }  
     
     @GetMapping("/model")
-    public Response allModelCorrespondante(@RequestParam String idmarque, @RequestParam String idcategorie) {
+    public Response allModelCorrespondante(@RequestParam String idmarque) {
         response = new Response();
         try {
-            response.setObject(modelServies.findModelUse(idmarque, idcategorie));
+            response.setObject(modelServies.findModelUse(idmarque));
             response.setError(false);
             return response;
         } catch (Exception e) {

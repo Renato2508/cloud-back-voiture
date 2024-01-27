@@ -3,7 +3,6 @@ package com.example.demo.authentication.etudiant.springWeb.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,10 +71,7 @@ public class AuthenticationService {
         request.getMotDePasse()
       )
     );
-    var user = utilisateurRepository
-      .findByEmail(request.getLogin())
-      .orElseThrow(() -> new Exception("Erreur d'authentification"));
-
+    var user = utilisateurRepository.findByEmail(request.getLogin()).orElseThrow(() -> new Exception("Erreur d'authentification"));
     var token = jwtUtil.generateToken(user);
     String nom = jwtUtil.extractNom(token);
     String prenom = jwtUtil.extractPrenom(token);

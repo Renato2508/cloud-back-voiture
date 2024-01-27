@@ -1,10 +1,5 @@
 package com.example.demo.authentication.etudiant.springWeb.tools;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtUtil {
@@ -59,10 +60,7 @@ public class JwtUtil {
     return generateToken(new HashMap<String, Object>(), userDetails);
   }
 
-  public String generateToken(
-    Map<String, Object> extraClaims,
-    UserDetails userDetails
-  ) {
+  public String generateToken(Map<String, Object> extraClaims,UserDetails userDetails) {
     String role = userDetails
             .getAuthorities()
             .stream()
@@ -116,22 +114,19 @@ public class JwtUtil {
     return extractClaim(token, Claims::getSubject);
   }
 
-  public boolean validateToken(String token)
-    throws AuthenticationCredentialsNotFoundException {
+  public boolean validateToken(String token) throws AuthenticationCredentialsNotFoundException {
     try {
-      Jwts
-        .parserBuilder()
-        .setSigningKey(SECRET_KEY)
-        .build()
-        .parseClaimsJws(token);
-      return true;
+        Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        Jwts
+            .parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token);
+        return true;
     } catch (Exception ex) {
-      throw new AuthenticationCredentialsNotFoundException(
-        "Invalid token",
-        ex.fillInStackTrace()
-      );
+        throw new AuthenticationCredentialsNotFoundException("Invalid token", ex.fillInStackTrace());
     }
-  }
+}
 
   public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
     final Claims claims = extractAllClaims(token);
@@ -139,8 +134,6 @@ public class JwtUtil {
   }
 
   private Claims extractAllClaims(String token) {
-    //System.out.println("!!!!! TOKEN ");
-    //System.out.println(token);
     return Jwts
       .parserBuilder()
       .setSigningKey(getSignInKey())

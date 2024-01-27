@@ -1,7 +1,5 @@
 package com.example.demo.authentication.etudiant.springWeb.auth;
 
-import com.example.demo.authentication.etudiant.springWeb.tools.Role;
-
 public class RegisterRequest {
 
   private String login;

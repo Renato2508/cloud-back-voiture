@@ -19,12 +19,16 @@ public class Message {
     @Id
     @Field("idMessage")
     String idmessage;
+
     @Field("envoi")
     LocalDateTime envoi;
+
     @Field("expediteur")
     int expediteur;
+
     @Field("message")
     String message;
+    
     @Field("idDiscussion")
     String idDiscussion;
     

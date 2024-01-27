@@ -5,11 +5,8 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -47,21 +44,13 @@ public class SecurityConfig {
       )
       .authorizeHttpRequests(req -> {
         req
-          .requestMatchers("/login/**")
-          .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
-          //.requestMatchers("/error/**")
-          //.permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
-          //      .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
-          .requestMatchers("/free/**")
-          .permitAll()
+          .requestMatchers("/login/**").permitAll() 
+          .requestMatchers("/free/**").permitAll()
           .anyRequest()
           .authenticated(); // Exige une authentification pour toutes les autres requêtes
       })
       .authenticationProvider(authenticationProvider)
-      .addFilterBefore(
-        jwtRequestFilter,
-        UsernamePasswordAuthenticationFilter.class
-      ) // Ajoute un filtre personnalisé (JwtRequestFilter) avant le filtre UsernamePasswordAuthenticationFilter
+      .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class) // Ajoute un filtre personnalisé (JwtRequestFilter) avant le filtre UsernamePasswordAuthenticationFilter
       .httpBasic(Customizer.withDefaults()) // Utilise l'authentification HTTP de base avec les paramètres par défaut
       .build();
   }
@@ -70,12 +59,8 @@ public class SecurityConfig {
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Arrays.asList("*")); // Autorise toutes les origines
-    configuration.setAllowedMethods(
-      Arrays.asList("GET", "POST", "PUT", "DELETE")
-    ); // Autorise les méthodes HTTP spécifiées
-    configuration.setAllowedHeaders(
-      Arrays.asList("authorization", "content-type", "x-auth-token")
-    ); // Autorise les en-têtes spécifiés
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Autorise les méthodes HTTP spécifiées
+    configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token")); // Autorise les en-têtes spécifiés
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration); // Enregistre la configuration CORS pour toutes les URL
     return source; // Retourne la source de configuration CORS

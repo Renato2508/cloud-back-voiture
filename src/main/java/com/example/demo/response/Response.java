@@ -5,6 +5,15 @@ public class Response {
     Object object;
     boolean error;
 
+    public Response(String information, boolean error, Object object) {
+        this.information = information;
+        this.object = object;
+        this.error = error;
+    }
+
+    public Response() {
+    }
+
     public String getInformation() {
         return information;
     }
