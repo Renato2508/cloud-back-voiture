@@ -1,6 +1,4 @@
-package com.example.demo.entity.voiture;
-
-import java.time.LocalDate;
+package com.example.demo.annex;
 
 public class VoitureInsert {    
     private String immatriculation;
@@ -9,7 +7,7 @@ public class VoitureInsert {
 
     private double prix;
 
-    private LocalDate annee;
+    private int annee;
 
     private String description;
 
@@ -39,11 +37,11 @@ public class VoitureInsert {
         this.prix = prix;
     }
 
-    public LocalDate getAnnee() {
+    public int getAnnee() {
         return annee;
     }
 
-    public void setAnnee(LocalDate annee) {
+    public void setAnnee(int annee) {
         this.annee = annee;
     }
 
@@ -62,6 +60,5 @@ public class VoitureInsert {
     public void setIdmodele(String idmodele) {
         this.idmodele = idmodele;
     }
-
     
 }

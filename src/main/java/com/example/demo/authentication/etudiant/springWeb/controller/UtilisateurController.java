@@ -1,18 +1,13 @@
 package com.example.demo.authentication.etudiant.springWeb.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationRequest;
 import com.example.demo.authentication.etudiant.springWeb.auth.RegisterRequest;
 import com.example.demo.authentication.etudiant.springWeb.services.AuthenticationService;
-import com.example.demo.authentication.etudiant.springWeb.tools.Util;
+import com.example.demo.response.Response;
 
 @RestController
 @RequestMapping("/login")
@@ -22,29 +17,21 @@ public class UtilisateurController {
   private AuthenticationService service;
 
   @PostMapping("/register")
-  public ResponseEntity<Map<String, Object>> register(
-    @RequestBody RegisterRequest request
-  ) {
-    Map<String, Object> response = Util.getDefaultResponse();
-    response.put("response", service.register(request));
-    return new ResponseEntity<Map<String, Object>>(
-      response,
-      HttpStatusCode.valueOf(200)
-    );
+  public Response register(@RequestBody RegisterRequest request) {
+    try {
+      service.register(request);
+      return new Response("200", false, null);
+    } catch (Exception e) {
+      return new Response("400", true, null);
+    }
   }
 
   @PostMapping("/auth")
-  public ResponseEntity<Map<String, Object>> auth(
-    @RequestBody AuthenticationRequest request
-  ) {
-    Map<String, Object> response = Util.getDefaultResponse();
+  public Response auth(@RequestBody AuthenticationRequest request) {
     try {
-        response.put("response", service.authenticate(request));
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatusCode.valueOf(200));
-
+      return new Response("200", false, service.authenticate(request));
     } catch (Exception e) {
-      ResponseEntity<Map<String, Object>> res = new ResponseEntity<Map<String, Object>>(new HashMap<String,Object>(), HttpStatus.UNAUTHORIZED);
-      return res;
+      return new Response("400", true, null);
     }
     
   

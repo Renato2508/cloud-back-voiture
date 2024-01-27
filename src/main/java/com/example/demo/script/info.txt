@@ -1,4 +1,4 @@
 annonce 
-    valider = 3
+    valider non vendue = 1
     en attente = 0
-    refuser = 1 
+    vendue = 2 

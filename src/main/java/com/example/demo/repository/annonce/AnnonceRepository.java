@@ -13,6 +13,8 @@ import java.util.List;
 public interface AnnonceRepository extends JpaRepository<Annonce, Integer> {
     List<Annonce> findByEtat(int etat);
 
+    List<Annonce> findByIduser(int iduser);
+
     @Modifying
     @Transactional
     @Query("UPDATE Annonce a SET a.etat = :newEtat WHERE a.idannonce = :annonceId")

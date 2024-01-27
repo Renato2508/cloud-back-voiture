@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demo.authentication.etudiant.springWeb.tools.Role;
+import com.example.demo.entity.annonce.Annonce;
 
 @Entity
 @Table(name = "utilisateur")
@@ -35,6 +36,9 @@ public class Utilisateur implements UserDetails{
   @Enumerated(EnumType.STRING)
   Role role;
 
+  @ManyToMany
+  @JoinTable( name = "favoris", joinColumns = @JoinColumn(name = "iduser"), inverseJoinColumns = @JoinColumn(name = "idannonce"))
+  List<Annonce> annonces;
   
   public Utilisateur(){}
 
@@ -77,9 +81,6 @@ public class Utilisateur implements UserDetails{
   public boolean isEnabled() {
     return true;
   }
-
-
-
 
   public Role getRole() {
     return role;
@@ -127,5 +128,13 @@ public class Utilisateur implements UserDetails{
 
   public void setMdp(String mdp) {
     this.mdp = mdp;
+  }
+
+  public List<Annonce> getAnnonces() {
+    return annonces;
+  }
+
+  public void setAnnonces(List<Annonce> annonces) {
+    this.annonces = annonces;
   }
 }
