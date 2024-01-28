@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
 import com.example.demo.authentication.etudiant.springWeb.services.UtilisateurService;
@@ -44,6 +45,7 @@ public class AnnonceService {
         return annonces;
     }
 
+    @Transactional
     public List<Annonce> findAllAnnonceNotValide(int etat) throws VoitureException, InterruptedException, ExecutionException {
         List<Annonce> annonces = this.annonceRepository.findByEtat(etat);
         // Récupérer toutes les voitures et utilisateurs
@@ -63,6 +65,7 @@ public class AnnonceService {
         return annonces;
     }
 
+    @Transactional
     public List<Annonce> findAllAnnonceValide(int etat) throws VoitureException, InterruptedException, ExecutionException {
         List<Annonce> annonces = this.annonceRepository.findByEtat(etat);
         // Récupérer toutes les voitures et utilisateurs
@@ -82,6 +85,7 @@ public class AnnonceService {
         return annonces;
     }
 
+    @Transactional
     public List<Annonce> findAllAnnonceValider() throws VoitureException, InterruptedException, ExecutionException {
         List<Annonce> annonces = this.annonceRepository.findByEtat(1);
         // Récupérer toutes les voitures et utilisateurs
@@ -138,6 +142,7 @@ public class AnnonceService {
         this.annonceRepository.updateEtatById(idannonce, 2);
     }
 
+    @Transactional
     public Annonce save(Annonce annonce){
         return this.annonceRepository.save(annonce);
     }

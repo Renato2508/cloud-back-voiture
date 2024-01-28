@@ -1,5 +1,10 @@
 package com.example.demo.annex;
 
+import java.util.List;
+
+import lombok.Data;
+
+@Data
 public class VoitureInsert {    
     private String immatriculation;
 
@@ -13,52 +18,7 @@ public class VoitureInsert {
 
     private String idmodele;
 
-    public String getImmatriculation() {
-        return immatriculation;
-    }
+    private List<String> images;
 
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
-    }
-
-    public int getKilometre() {
-        return kilometre;
-    }
-
-    public void setKilometre(int kilometre) {
-        this.kilometre = kilometre;
-    }
-
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
-    public int getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIdmodele() {
-        return idmodele;
-    }
-
-    public void setIdmodele(String idmodele) {
-        this.idmodele = idmodele;
-    }
     
 }

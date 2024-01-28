@@ -1,5 +1,12 @@
 package com.example.demo.controller;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.engine.jdbc.spi.JdbcServices;
+import org.hibernate.engine.jdbc.spi.SqlStatementLogger;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.internal.SessionFactoryImpl;
+import org.hibernate.stat.Statistics;
+import org.hibernate.stat.spi.StatisticsImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +31,11 @@ import com.example.demo.services.annonce.AnnonceService;
 import com.example.demo.services.annonce.FavorisServices;
 import com.example.demo.services.voiture.VoitureService;
 
+import jakarta.persistence.EntityManagerFactory;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-
 
 @RestController
 @RequestMapping("/annonce")
@@ -42,9 +50,11 @@ public class AnnonceController {
     private UtilisateurService utilisateurService;
     @Autowired
     private FavorisServices favorisServices;
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
 
-    @PostMapping("ajout")
+    @PostMapping("nouvelle_annonce")
     @PreAuthorize("hasRole('USER')") // sauvegarder une annonce
     public ResponseEntity<?>saveAnnonce(@RequestHeader(name = "Authorization") String token, @RequestBody VoitureInsert nouvelleVoiture) {
         Response res;

@@ -2,10 +2,12 @@ create table utilisateur(
     iduser serial primary key,
     nom varchar,
     prenom varchar,
-    email varchar,
+    email varchar unique,
     mdp varchar,
     role varchar
 );
 
-ALTER TABLE utilisateur
-ADD COLUMN role VARCHAR;
+create table pourcentage(
+    idpourcentage serial primary key,
+    pourcentage double
+);

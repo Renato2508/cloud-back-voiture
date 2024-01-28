@@ -5,11 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "voitures")
 public class Voiture {
+    @JsonProperty("images")
+    private List<byte[]> images;
 
     @Id
     @JsonProperty("_id")
@@ -41,7 +44,7 @@ public class Voiture {
 
     // Constructeurs, getters, setters...
 
-    public Voiture(String immatriculation, int kilometre, double prix, int annee, LocalDate dateaanonce, String description, Model modele) {
+    public Voiture(String immatriculation, int kilometre, double prix, int annee, LocalDate dateaanonce, String description, Model modele, List<byte[]>images) {
         this.immatriculation = immatriculation;
         this.dateaanonce = dateaanonce;
         this.kilometre = kilometre;
@@ -49,6 +52,7 @@ public class Voiture {
         this.annee = annee;
         this.description = description;
         this.modele = modele;
+        this.images = images;
     }
 
     public Voiture() {
