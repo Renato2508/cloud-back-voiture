@@ -1,10 +1,14 @@
 package com.example.demo.entity.voiture;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "categorie")
+@AllArgsConstructor
 public class Categorie {
     @Id
     @JsonProperty("_id")

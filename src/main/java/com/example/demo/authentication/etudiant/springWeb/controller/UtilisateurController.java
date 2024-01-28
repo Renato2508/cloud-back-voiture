@@ -2,6 +2,8 @@ package com.example.demo.authentication.etudiant.springWeb.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.authentication.etudiant.springWeb.auth.AuthenticationRequest;
@@ -27,11 +29,14 @@ public class UtilisateurController {
   }
 
   @PostMapping("/auth")
-  public Response auth(@RequestBody AuthenticationRequest request) {
+  public ResponseEntity<?> auth(@RequestBody AuthenticationRequest request) {
+    Response res = null; 
     try {
-      return new Response("200", false, service.authenticate(request));
+      res = new Response("200", false, service.authenticate(request));
+      return new ResponseEntity<Response>(res, HttpStatus.OK);
     } catch (Exception e) {
-      return new Response("400", true, null);
+      res = new Response("Errreur d'authentification", true, null);
+      return new ResponseEntity<Response>(res, HttpStatus.UNAUTHORIZED);
     }
     
   
