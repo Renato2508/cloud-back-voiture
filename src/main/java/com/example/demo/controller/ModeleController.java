@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,19 @@ public class ModeleController {
         }
     }
 
+    @GetMapping("/categorie")
+    public ResponseEntity<?> get_categorie(){
+        Response res;
+        try {
+            res = new Response("Liste de toutes les catégories",false, categorieService.findAllCategorie());
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            res = new Response(e.getMessage(), true, null);
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @PostMapping("/marque")
     public ResponseEntity<?> post_marque(@RequestBody Marque m){
         Response res;
@@ -52,6 +66,18 @@ public class ModeleController {
             m.setId(UUID.randomUUID().toString());
             marqueService.addMarque(m);
             res = new Response("Marque inseree",false,null);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            res = new Response(e.getMessage(), true, null);
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/marque")
+    public ResponseEntity<?> get_marque(){
+        Response res;
+        try {
+            res = new Response("Liste de toutes les marques",false, marqueService.findAllMarque());
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
             res = new Response(e.getMessage(), true, null);
