@@ -16,6 +16,9 @@ public class ModelService {
         this.modelRepository = modelRepository;
     }
 
+    public void addModel(Model mod){
+        this.modelRepository.save(mod);
+    }
     public List<Model> findAllModel(){
         // Utilisez la méthode du référentiel pour récupérer tous les documents
         List<Model> model = modelRepository.findAll();

@@ -20,4 +20,8 @@ public class CategorieService {
         List<Categorie> categorie =categorieRepository.findAll();
         return categorie;
     }
+
+    public void addCategorie(Categorie c){
+        categorieRepository.save(c);
+    }
 }
