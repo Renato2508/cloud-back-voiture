@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,18 +60,23 @@ public class AnnonceController {
     
     @GetMapping("/notvalide")
     @PreAuthorize("hasRole('ADMIN')")// liste des annonce non valider
-    public Response annonceNotValide(){
+    public ResponseEntity<?> annonceNotValide(){
+        Response res = null;
         try {
             // prendre tous les annonces pas encore valider
-            return new Response("200", false, this.annonceService.findAllAnnonceNotValide(0));
+            res = new Response("200", false, this.annonceService.findAllAnnonceNotValide(0));
+            return new ResponseEntity<Response>(res, HttpStatus.OK);
         } catch (VoitureException e) {
             // en cas d'erreur
             e.printStackTrace();
-            return new Response("400", true, null);
+            res = new Response(e.getMessage(), true, null);
+            return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+
         }catch (Exception e) {
             // en cas d'erreur     
-            e.printStackTrace();       
-            return new Response("400", true, null);
+            res = new Response("400", true, null);
+            return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
     }
 
