@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
 import com.example.demo.authentication.etudiant.springWeb.repositories.UtilisateurRepository;
 
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class UtilisateurService {
@@ -28,6 +30,7 @@ public class UtilisateurService {
     return user;
   }
 
+@Transactional
   public List<Utilisateur> getAllUsers(){
     return utilisateurRepository.findAll();
   }

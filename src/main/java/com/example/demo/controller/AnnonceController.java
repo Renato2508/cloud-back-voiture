@@ -46,21 +46,25 @@ public class AnnonceController {
 
     @PostMapping("ajout")
     @PreAuthorize("hasRole('USER')") // sauvegarder une annonce
-    public Response saveAnnonce(@RequestHeader(name = "Authorization") String token, @RequestBody VoitureInsert nouvelleVoiture) {
+    public ResponseEntity<?>saveAnnonce(@RequestHeader(name = "Authorization") String token, @RequestBody VoitureInsert nouvelleVoiture) {
+        Response res;
         try {
             Voiture voiture = voitureService.insererNouvelleVoiture(nouvelleVoiture);
             Utilisateur sender = jwtUtil.extractUser(token);
             Annonce annonce = this.annonceService.save(new Annonce(sender.getIdUser(), voiture.getId(), 0));
-            return new Response("200", false, annonce);
+            res = new Response("200", false, annonce);
+            return new ResponseEntity<Response>(res, HttpStatus.OK);
         } catch (VoitureException e) {
             e.printStackTrace();
-            return new Response("400", false, null);
+            res = new Response("503", false, null);
+            return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @GetMapping("/notvalide")
     @PreAuthorize("hasRole('ADMIN')")// liste des annonce non valider
     public ResponseEntity<?> annonceNotValide(){
+        System.out.println("Recherche des annonces notvalide");
         Response res = null;
         try {
             // prendre tous les annonces pas encore valider
@@ -81,84 +85,104 @@ public class AnnonceController {
     }
 
     @GetMapping("/favoris") // liste des annonce favoris 
-    @PreAuthorize("hasRole('USER')")
-    public Response annonceFavoris(@RequestHeader(name = "Authorization") String token){
-        try {
-            Utilisateur sender = jwtUtil.extractUser(token);
-            return new Response("200", false, this.annonceService.ListeAnnonceFavorisUser(utilisateurService.findById(sender.getIdUser())));
-        }catch (Exception e) {
-            // en cas d'erreur     
-            e.printStackTrace();       
-            return new Response("400", true, null);
-        }
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<?> annonceFavoris(@RequestHeader(name = "Authorization") String token){
+    Response res;
+    try {
+        Utilisateur sender = jwtUtil.extractUser(token);
+        res = new Response("200", false, this.annonceService.ListeAnnonceFavorisUser(utilisateurService.findById(sender.getIdUser())));
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
+    } catch (Exception e) {
+        // en cas d'erreur     
+        e.printStackTrace();       
+        res = new Response("400", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
+}
 
-    @GetMapping("/addfavoris") // ajouter une annonce au favoris
-    @PreAuthorize("hasRole('USER')")
-    public Response addFavoris(@RequestHeader(name = "Authorization") String token, int idannonce){
-        try {
-            // Ajouter une annonce au favoris
-            Utilisateur sender = jwtUtil.extractUser(token);
-            return new Response("200", false, favorisServices.save(new Favoris(sender.getIdUser(), idannonce, LocalDate.now())));
-        }catch (Exception e) {
-            // en cas d'erreur     
-            e.printStackTrace();       
-            return new Response("400", true, null);
-        }
+@GetMapping("/addfavoris") // ajouter une annonce au favoris
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<?> addFavoris(@RequestHeader(name = "Authorization") String token, int idannonce){
+    Response res;
+    try {
+        // Ajouter une annonce au favoris
+        Utilisateur sender = jwtUtil.extractUser(token);
+        res = new Response("200", false, favorisServices.save(new Favoris(sender.getIdUser(), idannonce, LocalDate.now())));
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
+    } catch (Exception e) {
+        // en cas d'erreur     
+        e.printStackTrace();       
+        res = new Response("400", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
+}
 
-    @GetMapping("/updatevendu") // change le status d'une annonce en vendu
-    @PreAuthorize("hasRole('USER')")
-    public Response updatevendu(@RequestParam int idannonce){
-        try {
-            // change l'etat d'une annonce oe vendu ou pas
-            this.annonceService.venduAnnonce(idannonce);
-            return new Response("200", false, null);
-        }catch (Exception e) {
-            // en cas d'erreur
-            e.printStackTrace();
-            return new Response("400", true, null);
-        }
+@GetMapping("/updatevendu") // change le status d'une annonce en vendu
+@PreAuthorize("hasRole('USER')")
+public ResponseEntity<?> updatevendu(@RequestParam int idannonce){
+    Response res;
+    try {
+        // change l'etat d'une annonce oe vendu ou pas
+        this.annonceService.venduAnnonce(idannonce);
+        res = new Response("200", false, null);
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
+    } catch (Exception e) {
+        // en cas d'erreur
+        e.printStackTrace();
+        res = new Response("400", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
+}
 
-    @GetMapping("/annonceuser")
-    @PreAuthorize("hasRole('USER')") // liste des annonce fais par l'utilsateur
-    public Response historiqueAnnonce(@RequestHeader(name = "Authorization") String token){
-        try {
-            Utilisateur sender = jwtUtil.extractUser(token);
-            return new Response("200", false,  this.annonceService.historiqueAnnonceUser(sender));
-        } catch (VoitureException e) {
-            // en cas d'erreur
-            e.printStackTrace();
-            return new Response("400", true, null);
-        }catch (Exception e) {
-            // en cas d'erreur
-            e.printStackTrace();
-            return new Response("400", true, null);
-        }
+@GetMapping("/annonceuser")
+@PreAuthorize("hasRole('USER')") // liste des annonce fais par l'utilsateur
+public ResponseEntity<?> historiqueAnnonce(@RequestHeader(name = "Authorization") String token){
+    Response res;
+    try {
+        Utilisateur sender = jwtUtil.extractUser(token);
+        res = new Response("200", false,  this.annonceService.historiqueAnnonceUser(sender));
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
+    } catch (VoitureException e) {
+        // en cas d'erreur
+        e.printStackTrace();
+        res = new Response("400", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
+    } catch (Exception e) {
+        // en cas d'erreur
+        e.printStackTrace();
+        res = new Response("400", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
+}
 
-    @GetMapping("/valide")
-    @PreAuthorize("hasRole('ADMIN')") // valider une annonce
-    public Response annonceValidate(@RequestParam int idannonce){       
-        try {
-            // changer l'etat annonce qu'on veut valider en 3
-            this.annonceService.validateAnnonce(idannonce);
-            return new Response("200", false, null);
-        }catch (Exception e) {
-            // en cas d'erreur
-            e.printStackTrace();
-            return new Response("400", true, null);
-        }
+@GetMapping("/valide")
+@PreAuthorize("hasRole('ADMIN')") // valider une annonce
+public ResponseEntity<?> annonceValidate(@RequestParam int idannonce){       
+    Response res;
+    try {
+        // changer l'etat annonce qu'on veut valider en 3
+        this.annonceService.validateAnnonce(idannonce);
+        res = new Response("200", false, null);
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
+    } catch (Exception e) {
+        // en cas d'erreur
+        e.printStackTrace();
+        res = new Response("400", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
+}
 
-    @PostMapping("/filter")
-    public Response filter(@RequestBody VoitureFilter nouvelleVoiture) {
-        try {
-            return  new Response("200", false, annonceService.listeAnnonceFilter(voitureService.findByFilter(nouvelleVoiture)));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return  new Response("500", true, null);
-        }
+@PostMapping("/filter")
+public ResponseEntity<?> filter(@RequestBody VoitureFilter nouvelleVoiture) {
+    Response res;
+    try {
+        res = new Response("200", false, annonceService.listeAnnonceFilter(voitureService.findByFilter(nouvelleVoiture)));
+        return new ResponseEntity<Response>(res, HttpStatus.OK);
+    } catch (Exception e) {
+        e.printStackTrace();
+        res = new Response("500", true, null);
+        return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+}
+
 }

@@ -11,5 +11,5 @@ import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
   Optional<Utilisateur> findByEmailAndMdp(String email, String mdp);
   Optional<Utilisateur> findByEmail(String email);
-  List<Utilisateur> findAll();
+  //List<Utilisateur> findAll();
 }
