@@ -15,6 +15,10 @@ public class MarqueService {
         this.marqueRepository = marqueRepository;
     }
 
+    public void addMarque(Marque m){
+        this.marqueRepository.save(m);
+    }
+
     public List<Marque> findAllMarque(){
         // Utilisez la méthode du référentiel pour récupérer tous les documents
         List<Marque> marque =marqueRepository.findAll();

@@ -18,6 +18,11 @@ public class Marque {
     @JsonProperty("logo")
     private int logo;
 
+    public Marque(String id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
     public String getId() {
         return id;
     }

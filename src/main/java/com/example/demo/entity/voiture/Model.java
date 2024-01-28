@@ -5,7 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Data;
+
 @Document(collection = "model")
+@Data
 public class Model {
     @Id
     @JsonProperty("_id")
@@ -17,29 +20,9 @@ public class Model {
     @JsonProperty("marque")
     private Marque marque;
 
-    public String getId() {
-        return id;
-    }
+    @JsonProperty("nom")
+    private String nomModele;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Categorie getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-    }
-
-    public Marque getMarque() {
-        return marque;
-    }
-
-    public void setMarque(Marque marque) {
-        this.marque = marque;
-    }
-
+    
     // Constructeurs, getters, setters...
 }
