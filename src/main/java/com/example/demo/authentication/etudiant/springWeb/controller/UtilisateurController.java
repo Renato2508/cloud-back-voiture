@@ -35,6 +35,7 @@ public class UtilisateurController {
       res = new Response("200", false, service.authenticate(request));
       return new ResponseEntity<Response>(res, HttpStatus.OK);
     } catch (Exception e) {
+      System.out.println("-------> AUTH ERROR");
       res = new Response("Errreur d'authentification", true, null);
       return new ResponseEntity<Response>(res, HttpStatus.UNAUTHORIZED);
     }
