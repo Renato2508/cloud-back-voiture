@@ -54,6 +54,29 @@ public class AnnonceController {
     private EntityManagerFactory entityManagerFactory;
 
 
+    @GetMapping("/valides")
+    public ResponseEntity<?> annonceDejaValidees(){
+        System.out.println("Recherche des annonces déja validées");
+        Response res = null;
+        try {
+            // prendre tous les annonces pas encore valider
+            res = new Response("200", false, this.annonceService.findAllAnnonceValider());
+            return new ResponseEntity<Response>(res, HttpStatus.OK);
+        } catch (VoitureException e) {
+            // en cas d'erreur
+            e.printStackTrace();
+            res = new Response(e.getMessage(), true, null);
+            return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }catch (Exception e) {
+            // en cas d'erreur     
+            res = new Response(e.getMessage(), true, null);
+            return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+
     @PostMapping("nouvelle_annonce")
     @PreAuthorize("hasRole('USER')") // sauvegarder une annonce
     public ResponseEntity<?>saveAnnonce(@RequestHeader(name = "Authorization") String token, @RequestBody VoitureInsert nouvelleVoiture) {
@@ -122,7 +145,7 @@ public ResponseEntity<?> addFavoris(@RequestHeader(name = "Authorization") Strin
     } catch (Exception e) {
         // en cas d'erreur     
         e.printStackTrace();       
-        res = new Response("400", true, null);
+        res = new Response(e.getMessage(), true, null);
         return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
 }
@@ -177,7 +200,7 @@ public ResponseEntity<?> annonceValidate(@RequestParam int idannonce){
     } catch (Exception e) {
         // en cas d'erreur
         e.printStackTrace();
-        res = new Response("400", true, null);
+        res = new Response(e.getMessage(), true, null);
         return new ResponseEntity<Response>(res, HttpStatus.BAD_REQUEST);
     }
 }
