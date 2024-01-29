@@ -38,7 +38,7 @@ public class StatService {
         int vendusTotal = 0;
         double chiffreAffaireTotal = 0.0;
 
-        for (Stat stat : stats) {
+        for (StatMarque stat : stats) {
             vendusTotal += stat.getVendus();
             chiffreAffaireTotal += stat.getChiffreAffaire();
         }
@@ -52,11 +52,10 @@ public class StatService {
         return stats2;
     }
 
-    public static List<StatCategorie> sumVentesCateg(List<StatCategorie> stats) {
+    public static List<StatCategorie> sumVentesCateg(List <StatCategorie> stats){
         int vendusTotal = 0;
         double chiffreAffaireTotal = 0.0;
-
-        for (Stat stat : stats) {
+        for (StatCategorie stat : stats) {
             vendusTotal += stat.getVendus();
             chiffreAffaireTotal += stat.getChiffreAffaire();
         }
@@ -70,6 +69,7 @@ public class StatService {
     }
 
     // STATISTIQUES ANNUELLES PAR MARQUE
+        
 
     protected List<StatMarque> getStatsByMarque(String marque){
         System.out.println("----> RECHERCHE DES STATS  POUR UNE  MARQUE POUr TOUTES LES ANNEES");
@@ -80,7 +80,7 @@ public class StatService {
 
 
         AggregationOperation project = Aggregation.project()
-                .andExpression("year(dateannonce)").as("annee")
+                .andExpression("year(dateaanonce)").as("annee")
                 .and("modele.marque.nom").as("marque")
                 .and("commission").as("commission");
 
@@ -104,7 +104,7 @@ public class StatService {
     protected List<StatMarque> getStatMarqueAnnee() {
         System.out.println("----> RECHERCHE DES STATS GENERALES POUR LES MARQUES");
         AggregationOperation project = Aggregation.project()
-                .andExpression("year(dateannonce)").as("annee")
+                .andExpression("year(dateaanonce)").as("annee")
                 .and("modele.marque.nom").as("marque")
                 .and("commission").as("commission");
 
@@ -128,7 +128,7 @@ public class StatService {
     // FONCTION PRINVCIPALE POUR LE CATEGORIES  
     public List<StatMarque> getStatsMarque(FiltreMarque filter){
             System.out.println("-----> INSTANCE DU FILTRE: "+filter.getClass().getName());
-            System.out.println("-----> VALEUR ANNEE: "+filter.getAnnee());
+            //System.out.println("-----> VALEUR ANNEE: "+filter.getAnnee());
             System.out.println("-----> VALEUR MARQUE: "+filter.getMarque());
 
         List<StatMarque> res = null;
@@ -155,7 +155,7 @@ public class StatService {
 
 
         AggregationOperation project = Aggregation.project()
-                .andExpression("year(dateannonce)").as("annee")
+                .andExpression("year(dateaanonce)").as("annee")
                 .and("modele.categorie.nom").as("categorie")
                 .and("commission").as("commission");
 
@@ -180,18 +180,19 @@ public class StatService {
     protected List<StatCategorie> getStatCategorieAnnee(){
         System.out.println("----> RECHERCHE DES STATS GENERALES POUR LES Catégories");
         AggregationOperation project = Aggregation.project()
-                .andExpression("year(dateannonce)").as("annee")
+                .andExpression("year(dateaanonce)").as("annee")
                 .and("modele.categorie.nom").as("categorie")
                 .and("commission").as("commission");
 
        AggregationOperation group = Aggregation.group("annee", "categorie")
-                .first("annee").as("annee")
                 .first("categorie").as("categorie")
+                .first("annee").as("annee")
                 .sum("commission").as("chiffreAffaire")
                 .count().as("vendus");
 
         Aggregation aggregation = Aggregation.newAggregation(project, group);
 
+       System.out.println("-----> AGGREGAION: "+ aggregation);
         AggregationResults<StatCategorie> results = mongoTemplate.aggregate(aggregation, "voitures", StatCategorie.class);
 
         return results.getMappedResults();
@@ -200,7 +201,7 @@ public class StatService {
     // FONCTION PRINVCIPALE POUR LE CATEGORIES 
     public List<StatCategorie> getStatsCategorie(FiltreCategorie filter){
         System.out.println("-----> INSTANCE DU FILTRE: "+filter.getClass().getName());
-            System.out.println("-----> VALEUR ANNEE: "+filter.getAnnee());
+            //System.out.println("-----> VALEUR ANNEE: "+filter.getAnnee());
             System.out.println("-----> VALEUR CATEGORIE: "+filter.getCategorie());
 
 
@@ -208,7 +209,7 @@ public class StatService {
                 return sumVentesCateg(getStatsByCategorie(((FiltreCategorie)filter).getCategorie()));
             }
         
-            else return sumVentesCateg(getStatCategorieAnnee());
+        else return sumVentesCateg(getStatCategorieAnnee());
     }
    
 
