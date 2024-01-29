@@ -32,6 +32,7 @@ public class StatController {
 
     @PutMapping("/statsCategorie")
     public ResponseEntity<?> getStatsCategorie(@RequestBody FiltreCategorie filter){
+        System.out.println("GET STAT CATEGORIE");
         response = new Response();
         List<StatCategorie> l = statService.getStatsCategorie(filter);
         response.setObject(l);

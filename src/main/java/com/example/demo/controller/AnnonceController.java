@@ -88,7 +88,7 @@ public class AnnonceController {
 
         }catch (Exception e) {
             // en cas d'erreur     
-            res = new Response("400", true, null);
+            res = new Response(e.getMessage(), true, null);
             return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
