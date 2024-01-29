@@ -1,0 +1,923 @@
+{
+	"info": {
+		"_postman_id": "b55f2a48-b64a-4dda-b7d6-7495da234fec",
+		"name": "Collection_postman_projet_cloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Annonces",
+			"item": [
+				{
+					"name": "mise à jour de la commission",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create annonce AVEC LE FICHIER BASE 64",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJOQVRPIiwicHJlbm9tIjoiTmF0byIsInN1YiI6ImZhIiwiaWF0IjoxNzA2NTA2MjEzLCJleHAiOjE3MDY1NDQ2MTN9.jBAxkHs4cYmLOfisy2iVGFgtuv0edHxzMCr0-DdMZHc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"immatriculation\":\"29299 WWT\",\r\n    \"kilometre\":35000,\r\n    \"prix\":200000000,\r\n    \"annee\":2022,\r\n    \"description\":\"fiaran'ny kandida malaza iray\",\r\n    \"idmodele\":\"1399d2c1-6ad4-46df-a8e1-3425aea33cb0\",\r\n    \"images\":[\"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\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/annonce/nouvelle_annonce",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"annonce",
+								"nouvelle_annonce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ajouter une annonce au favoris d'une utilisateur",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJmYW5kcmVzZW5hIiwicHJlbm9tIjoiQW5kcmlhIiwic3ViIjoiZmFAZ21haWwuY29tIiwiaWF0IjoxNzA2MzYwNDAwLCJleHAiOjE3MDYzOTg4MDB9.6u90omgWtTEUALZxClZlJwj7thDV4RHzuCY3G7NSvDc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/addfavoris?idannonce=2",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"addfavoris"
+							],
+							"query": [
+								{
+									"key": "idannonce",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update liste annonce ho validena",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjMsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiZmFuZHJlc2VuYSIsInByZW5vbSI6IkFuZHJpYSIsInN1YiI6ImFkQGdtYWlsLmNvbSIsImlhdCI6MTcwNjM0OTE2NywiZXhwIjoxNzA2Mzg3NTY3fQ.7rjcDqAR7Rr5SCWyH7rUmG7mq5fa91A8G80k2NSvajM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/notvalide",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"notvalide"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changer l'état d'une annonce",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJmYW5kcmVzZW5hIiwicHJlbm9tIjoiQW5kcmlhIiwic3ViIjoiZmFAZ21haWwuY29tIiwiaWF0IjoxNzA2MzQwNDg5LCJleHAiOjE3MDYzNzg4ODl9.hYDUDXKR4aKuEA_rnV-xrmaWPRHWXO2Hgu7MJSir8sk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/updatevendu?idannonce=1",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"updatevendu"
+							],
+							"query": [
+								{
+									"key": "idannonce",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "annonce faites par l'utilisateur connecter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJmYW5kcmVzZW5hIiwicHJlbm9tIjoiQW5kcmlhIiwic3ViIjoiZmFAZ21haWwuY29tIiwiaWF0IjoxNzA2MzYyMTQ5LCJleHAiOjE3MDY0MDA1NDl9.HhPpfh5oo2l4Ftyx8jaHr-jyrREEX1HmEx6-5MOXTqE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/favoris",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"favoris"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "annonce not valide * ADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjIsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiZmFuZHJlc2VuYSIsInByZW5vbSI6IkFuZHJpYSIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcwNjUxMDQ0MSwiZXhwIjoxNzA2NTQ4ODQxfQ.Hq_eDS49a6A27-48WXAhCveHd4zWDo5X_bghJvLWYyM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/notvalide",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"notvalide"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "récupération des marque et categorie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/detail/marca",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"detail",
+								"marca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recherche filtrée d'annonces",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idmarque\":\"65a284f4e884bde4811c38b4\",\n    \"idmodel\":\"65a28cb0e884bde4811c38bd\",\n    \"min\":100000000,\n//    \"max\":200000000,\n    \"kilometrage\":20000,\n    \"annee\":2012\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/filter",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "valider une annonce * ADMIN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/valide?idannonce=1",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"valide"
+							],
+							"query": [
+								{
+									"key": "idannonce",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "model d'une marque et categorie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cloud-back-voiture-production.up.railway.app/detail/model?idmarque=65a284f4e884bde4811c38b4&idcategorie=65a287cde884bde4811c38ba",
+							"protocol": "http",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"detail",
+								"model"
+							],
+							"query": [
+								{
+									"key": "idmarque",
+									"value": "65a284f4e884bde4811c38b4"
+								},
+								{
+									"key": "idcategorie",
+									"value": "65a287cde884bde4811c38ba"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connexion et inscription",
+			"item": [
+				{
+					"name": "Inscription user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login\":\"nota\",\r\n\"motDePasse\":\"nota\",\r\n\"nom\":\"Nota\",\r\n\"prenom\":\"Nota\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/login/register",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"login",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Connexion user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login\":\"fa\",\r\n\"motDePasse\":\"fa\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/login/auth",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"login",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CONNEXION ADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login\":\"admin\",\r\n\"motDePasse\":\"admin\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/login/auth",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"login",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AJOUT NOUVEL ADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login\":\"root\",\r\n\"motDePasse\":\"root\",\r\n\"role\":\"admin\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Création MODELE MARQUE CATEGORIE",
+			"item": [
+				{
+					"name": "Creation d'un nouveau modele * ADMIN(admin, admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUyMzk0NCwiZXhwIjoxNzA2NTYyMzQ0fQ.K9MfesL9uZGoook5ayCJ-clQ-XescNhGxuma-W7ecv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idmarque\":\"85c404b3-4734-4be9-adba-f3969fdb4213\",\r\n    \"nommarque\":\"Dodge\",\r\n    \"idcategorie\":\"065bf3f6-b035-4d1f-9747-2e71847c9f85\",\r\n    \"nomcategorie\":\"Sport\",\r\n    \"nomModele\":\"Mustang\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/modele/modele",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"modele",
+								"modele"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create categorie * ADMIN(admin, admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUyMzk0NCwiZXhwIjoxNzA2NTYyMzQ0fQ.K9MfesL9uZGoook5ayCJ-clQ-XescNhGxuma-W7ecv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nom\":\"Ssang Yang\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/modele/categorie",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"modele",
+								"categorie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create marque   * ADMIN(admin, admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUyMzk0NCwiZXhwIjoxNzA2NTYyMzQ0fQ.K9MfesL9uZGoook5ayCJ-clQ-XescNhGxuma-W7ecv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nom\":\"Citroen\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/modele/marque",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"modele",
+								"marque"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messagerie",
+			"item": [
+				{
+					"name": "envoi message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjMsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJOb3RhIiwicHJlbm9tIjoiTm90YSIsInN1YiI6Im5vdGEiLCJpYXQiOjE3MDY1MjMyOTksImV4cCI6MTcwNjU2MTY5OX0.oSiPRT_8OFTbzX7z5J-PnL2b9AJQPfM4Zc4AYUifuak",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"iddestinataire\": 2,\r\n\"message\":\"Salutations !\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/discussion/message",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"discussion",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Liste de toutes les communications impliquant la personne connectee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjMsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJOb3RhIiwicHJlbm9tIjoiTm90YSIsInN1YiI6Im5vdGEiLCJpYXQiOjE3MDY1MjMyOTksImV4cCI6MTcwNjU2MTY5OX0.oSiPRT_8OFTbzX7z5J-PnL2b9AJQPfM4Zc4AYUifuak",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/discussion/discussions",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"discussion",
+								"discussions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer tous les messages d'une discussion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjMsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJOb3RhIiwicHJlbm9tIjoiTm90YSIsInN1YiI6Im5vdGEiLCJpYXQiOjE3MDY1MjMyOTksImV4cCI6MTcwNjU2MTY5OX0.oSiPRT_8OFTbzX7z5J-PnL2b9AJQPfM4Zc4AYUifuak",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idDiscussion\":\"11eccfca-eff1-47e0-8fa3-ce9054d703d4\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/discussion/messages",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"discussion",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistiques backoffice",
+			"item": [
+				{
+					"name": "get statistiques generales par MARQUE pour toutes les marques sur toutes les années *ADMIN(admin, admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUyMzk0NCwiZXhwIjoxNzA2NTYyMzQ0fQ.K9MfesL9uZGoook5ayCJ-clQ-XescNhGxuma-W7ecv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/stats/statsMarque",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"stats",
+								"statsMarque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get statistiques générales par CATEGORIE pour  UNE categrie DONNEE pour chaque annee *ADMIN(admin, amdin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUwNjU1MywiZXhwIjoxNzA2NTQ0OTUzfQ.HHsAjP-T79yjFwItaca2JvvcVNYrEqPInI_amYrgH6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"categorie\":\"Berline\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/stats/statsCategorie",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"stats",
+								"statsCategorie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Statistiques pour une marque donnée sur toute les années * ADMIN(admin, admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjQsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUwMDg5MywiZXhwIjoxNzA2NTM5MjkzfQ.EIoyPP7ql0HYue7C25T84d1Unz073O9XlaHsj0_UIQI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"marque\":\"Chevrolet\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/stats/statsMarque",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"stats",
+								"statsMarque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Statistiques pour toutes les catégorires sur toutes les années * ADMIN(admin, admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUyMzk0NCwiZXhwIjoxNzA2NTYyMzQ0fQ.K9MfesL9uZGoook5ayCJ-clQ-XescNhGxuma-W7ecv0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/stats/statsCategorie",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"stats",
+								"statsCategorie"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
