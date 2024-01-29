@@ -38,7 +38,7 @@ public class DetailController {
     public ResponseEntity<?> maj_pourcentage(@RequestBody Pourcentage percent){
         Response res =null;
         try {
-        
+        perc_service.save(percent);
         res = new Response("Mise à jour de la commission prélevée", false, percent);
         return new ResponseEntity<Response>(res, HttpStatus.OK);
     } catch (Exception e) {
