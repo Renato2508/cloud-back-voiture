@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "b55f2a48-b64a-4dda-b7d6-7495da234fec",
-		"name": "Collection_postman_projet_cloud",
+		"_postman_id": "44c45fe0-d5b5-433d-b5f9-06f145c1a43e",
+		"name": "Collection_postman_projet_cloud Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -9,12 +9,42 @@
 			"name": "Annonces",
 			"item": [
 				{
-					"name": "mise à jour de la commission",
+					"name": "mise à jour de la commission * ADMIN",
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUzMTYwMCwiZXhwIjoxNzA2NTcwMDAwfQ.OcmQ_Sdj9kuugMT4wclMPEJhc-AVU950AGlXa7L0S7A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"pourcentage\":23.8}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "https://cloud-back-voiture-production.up.railway.app/detail/commission",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"detail",
+								"commission"
+							]
 						}
 					},
 					"response": []
@@ -27,7 +57,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJOQVRPIiwicHJlbm9tIjoiTmF0byIsInN1YiI6ImZhIiwiaWF0IjoxNzA2NTA2MjEzLCJleHAiOjE3MDY1NDQ2MTN9.jBAxkHs4cYmLOfisy2iVGFgtuv0edHxzMCr0-DdMZHc",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJub20iOiJOQVRPIiwicHJlbm9tIjoiTmF0byIsInN1YiI6ImZhIiwiaWF0IjoxNzA2NTMxODI3LCJleHAiOjE3MDY1NzAyMjd9.tPiyf5Bb1nxQ_MnwOuG3U3TZDe9QpinH-h-6k2K7JXI",
 									"type": "string"
 								}
 							]
@@ -44,11 +74,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/annonce/nouvelle_annonce",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/nouvelle_annonce",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"annonce",
 								"nouvelle_annonce"
@@ -73,8 +106,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/addfavoris?idannonce=2",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/addfavoris?idannonce=2",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -96,7 +129,7 @@
 					"response": []
 				},
 				{
-					"name": "update liste annonce ho validena",
+					"name": "liste annonce ho validena  *ADMIN",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -111,8 +144,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/notvalide",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/notvalide",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -143,8 +176,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/updatevendu?idannonce=1",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/updatevendu?idannonce=1",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -181,8 +214,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/favoris",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/favoris",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -198,45 +231,13 @@
 					"response": []
 				},
 				{
-					"name": "annonce not valide * ADMIN",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjIsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiZmFuZHJlc2VuYSIsInByZW5vbSI6IkFuZHJpYSIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcwNjUxMDQ0MSwiZXhwIjoxNzA2NTQ4ODQxfQ.Hq_eDS49a6A27-48WXAhCveHd4zWDo5X_bghJvLWYyM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/notvalide",
-							"protocol": "http",
-							"host": [
-								"cloud-back-voiture-production",
-								"up",
-								"railway",
-								"app"
-							],
-							"path": [
-								"annonce",
-								"notvalide"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "récupération des marque et categorie",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/detail/marca",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/detail/marca",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -254,11 +255,21 @@
 				{
 					"name": "recherche filtrée d'annonces",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idmarque\":\"65a284f4e884bde4811c38b4\",\n    \"idmodel\":\"65a28cb0e884bde4811c38bd\",\n    \"min\":100000000,\n//    \"max\":200000000,\n    \"kilometrage\":20000,\n    \"annee\":2012\n}",
+							"raw": "{\n    //\"idmarque\":\"65a284f4e884bde4811c38b4\",\n    \"idmodel\":\"65a28cb0e884bde4811c38bd\",\n    \"min\":100000000,\n//    \"max\":200000000,\n    \"kilometrage\":20000,\n    \"annee\":2012\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,8 +277,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/filter",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/filter",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -285,11 +296,21 @@
 				{
 					"name": "valider une annonce * ADMIN",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjEsInJvbGUiOiJST0xFX0FETUlOIiwibm9tIjoiTkFUTyIsInByZW5vbSI6Ik5hdG8iLCJzdWIiOiJhZG1pbiIsImlhdCI6MTcwNjUzMzg5NCwiZXhwIjoxNzA2NTcyMjk0fQ.TpDgVnidelljGhDIT9s3zDBulnwUK5fhBo5lkqQTvYA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/annonce/valide?idannonce=1",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/valide?idannonce=2",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -303,7 +324,7 @@
 							"query": [
 								{
 									"key": "idannonce",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -316,8 +337,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://cloud-back-voiture-production.up.railway.app/detail/model?idmarque=65a284f4e884bde4811c38b4&idcategorie=65a287cde884bde4811c38ba",
-							"protocol": "http",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/detail/model?idmarque=65a284f4e884bde4811c38b4&idcategorie=65a287cde884bde4811c38ba",
+							"protocol": "https",
 							"host": [
 								"cloud-back-voiture-production",
 								"up",
@@ -339,6 +360,36 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "récupération de toutes les annoncées déjà validées",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cloud-back-voiture-production.up.railway.app/annonce/valides",
+							"protocol": "https",
+							"host": [
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"annonce",
+								"valides"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -485,11 +536,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/login/register",
+							"raw": "https://cloud-back-voiture-production.up.railway.app/login/register",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud-back-voiture-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"login",
 								"register"
@@ -501,7 +555,7 @@
 			]
 		},
 		{
-			"name": "Création MODELE MARQUE CATEGORIE",
+			"name": "MODELE MARQUE CATEGORIE backoffice",
 			"item": [
 				{
 					"name": "Creation d'un nouveau modele * ADMIN(admin, admin)",
