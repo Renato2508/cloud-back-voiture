@@ -42,7 +42,8 @@ public class DetailController {
         res = new Response("Mise à jour de la commission prélevée", false, percent);
         return new ResponseEntity<Response>(res, HttpStatus.OK);
     } catch (Exception e) {
-        res = new Response("Erreur à la mise à jour de la commission",true, null);
+        e.printStackTrace();
+        res = new Response(e.getMessage(),true, null);
         return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     }
