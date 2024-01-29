@@ -18,7 +18,8 @@ public class UtilisateurService {
   @Autowired
   private UtilisateurRepository utilisateurRepository;
 
-  
+
+  //@Transactional
   public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
     Optional<Utilisateur> user = utilisateurRepository.findByEmailAndMdp(
       utilisateur.getEmail(),
@@ -30,11 +31,12 @@ public class UtilisateurService {
     return user;
   }
 
-@Transactional
+  //@Transactional
   public List<Utilisateur> getAllUsers(){
     return utilisateurRepository.findAll();
   }
 
+  //@Transactional
   public Utilisateur findById(int iduser){
       return utilisateurRepository.findById(iduser).get();
   }

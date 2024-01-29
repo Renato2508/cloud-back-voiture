@@ -30,7 +30,7 @@ public class AuthenticationService {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-  @Transactional
+  //@Transactional
   public AuthenticationResponse register(RegisterRequest request) {
     var user = new Utilisateur();
     user.setEmail(request.getLogin());
@@ -61,6 +61,7 @@ public class AuthenticationService {
     return new AuthenticationResponse(jwtToken,id,nom, prenom);
   }
 
+  //@Transactional
   public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception{
     System.out.println("----> USER FOUND   "+utilisateurRepository.findByEmail(request.getLogin()));
     System.out.println("----> LOGIN   "+request.getLogin());

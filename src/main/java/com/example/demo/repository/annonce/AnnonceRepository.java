@@ -16,7 +16,7 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Integer> {
     List<Annonce> findByIduser(int iduser);
 
     @Modifying
-    @Transactional
+    //@Transactional
     @Query("UPDATE Annonce a SET a.etat = :newEtat WHERE a.idannonce = :annonceId")
     void updateEtatById(@Param("annonceId") int annonceId, @Param("newEtat") int newEtat);
 }

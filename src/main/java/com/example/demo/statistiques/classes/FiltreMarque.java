@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class FiltreMarque extends FiltreStat{
+public class FiltreMarque {
     String marque;
 }

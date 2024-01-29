@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,8 +30,9 @@ public class StatController {
     private StatService statService;
     private Response response;
 
-    @GetMapping("/statsCategorie")
+    @PutMapping("/statsCategorie")
     public ResponseEntity<?> getStatsCategorie(@RequestBody FiltreCategorie filter){
+        System.out.println("GET STAT CATEGORIE");
         response = new Response();
         List<StatCategorie> l = statService.getStatsCategorie(filter);
         response.setObject(l);
@@ -39,7 +41,7 @@ public class StatController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/statsMarque")
+    @PutMapping("/statsMarque")
     public ResponseEntity<?> getStats(@RequestBody FiltreMarque filter){
         response = new Response();
         List<StatMarque> l = statService.getStatsMarque(filter);
