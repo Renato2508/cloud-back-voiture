@@ -65,6 +65,7 @@ public class ModeleController {
         try {
             m.setId(UUID.randomUUID().toString());
             marqueService.addMarque(m);
+            System.out.println("------>  MARQUE: "+m.getNom());
             res = new Response("Marque inseree",false,null);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {

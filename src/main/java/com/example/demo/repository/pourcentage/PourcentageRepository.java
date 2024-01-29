@@ -11,5 +11,6 @@ public interface PourcentageRepository extends JpaRepository<Pourcentage, Intege
        
     @Query("SELECT p FROM Pourcentage p WHERE p.idpourcentage = (SELECT MAX(p2.idpourcentage) FROM Pourcentage p2)")
     Optional<Pourcentage> findByMaxId();
+    
 }
 
