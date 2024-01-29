@@ -30,7 +30,7 @@ public class UtilisateurService {
     return user;
   }
 
-@Transactional
+  @Transactional
   public List<Utilisateur> getAllUsers(){
     return utilisateurRepository.findAll();
   }

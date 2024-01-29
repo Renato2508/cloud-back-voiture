@@ -1,6 +1,8 @@
 package com.example.demo.services.voiture;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,8 +67,19 @@ public class VoitureService {
         }
     }
 
+    public List<byte[]> restoreImages(List<String>images){
+
+        List<byte[]>res = new ArrayList<byte[]>();
+        for(String base64Image : images){
+            byte[] imageBytes = Base64.getDecoder().decode(base64Image);
+            res.add(imageBytes);
+
+        }
+        return res;
+    }
+
     public Voiture createObjectVoiture(VoitureInsert nouvelleVoiture, Model modelUse){
-        Voiture newVaika = new Voiture(nouvelleVoiture.getImmatriculation(), nouvelleVoiture.getKilometre(), nouvelleVoiture.getPrix(), nouvelleVoiture.getAnnee(), LocalDate.now(), nouvelleVoiture.getDescription(), modelUse);
+        Voiture newVaika = new Voiture(nouvelleVoiture.getImmatriculation(), nouvelleVoiture.getKilometre(), nouvelleVoiture.getPrix(), nouvelleVoiture.getAnnee(), LocalDate.now(), nouvelleVoiture.getDescription(), modelUse, this.restoreImages(nouvelleVoiture.getImages()));
         //calcule de la commission
         this.getCommission(newVaika);
         return newVaika;
