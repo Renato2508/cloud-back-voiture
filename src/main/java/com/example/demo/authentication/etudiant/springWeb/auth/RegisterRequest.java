@@ -7,6 +7,7 @@ public class RegisterRequest {
   private String nom;
   private String prenom;
   private String role;
+  private String notif_token;
 
   public String getRole(){return  role;}
 
@@ -42,5 +43,13 @@ public class RegisterRequest {
 
   public void setPrenom(String prenom) {
     this.prenom = prenom;
+  }
+
+  public String getNotif_token() {
+    return notif_token;
+  }
+
+  public void setNotif_token(String notif_token) {
+    this.notif_token = notif_token;
   }
 }
