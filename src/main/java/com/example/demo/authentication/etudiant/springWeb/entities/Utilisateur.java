@@ -21,6 +21,9 @@ public class Utilisateur implements UserDetails{
   @Column(name = "iduser")
   int idUser;
 
+  @Column(name = "notif_token")
+  String notif_token;
+
   @Column(name = "nom")
   String nom;
 
@@ -136,5 +139,13 @@ public class Utilisateur implements UserDetails{
 
   public void setAnnonces(List<Annonce> annonces) {
     this.annonces = annonces;
+  }
+
+  public String getNotif_token() {
+    return notif_token;
+  }
+
+  public void setNotif_token(String notif_token) {
+    this.notif_token = notif_token;
   }
 }

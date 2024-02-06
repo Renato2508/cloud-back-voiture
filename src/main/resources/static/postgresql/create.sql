@@ -20,7 +20,8 @@ create table utilisateur(
     prenom varchar,
     email varchar unique,
     mdp varchar,
-    role varchar
+    role varchar,
+    notif_token text
 );
 
 CREATE TABLE pourcentage(
