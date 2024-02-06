@@ -32,14 +32,24 @@ public class Discussion {
     @Field("id2")
     int id2;
 
+    @Field("nom1")
+    String nom1;
+
+    @Field("nom2")
+    String nom2;
+
     @Transient
     List<Message> messages = new ArrayList<Message>();
     
-    public Discussion(Utilisateur sender, int receiver, String msg){
+    public Discussion(Utilisateur sender, Utilisateur receiver, String msg){
         String uuid = UUID.randomUUID().toString();
         this.idDiscussion = uuid;
         this.id1 = sender.getIdUser();
-        this.id2 = receiver;
+        this.id2 = receiver.getIdUser();
+
+        this.nom1 = sender.getPrenom();
+        this.nom2 = receiver.getPrenom();
+
         this.messages.add(new Message(UUID.randomUUID().toString(), LocalDateTime.now(), sender.getIdUser(), msg, this.idDiscussion)); 
     }
 }
