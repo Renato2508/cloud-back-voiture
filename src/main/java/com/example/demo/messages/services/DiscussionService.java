@@ -31,6 +31,8 @@ public class DiscussionService {
     MessageRepository messageRepository;
     @Autowired
     UtilisateurRepository utilisateurRepository;
+
+    @Autowired
     NotificationPushService notificationService;
     
 
