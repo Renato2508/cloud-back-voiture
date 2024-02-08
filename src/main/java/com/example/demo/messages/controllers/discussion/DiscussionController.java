@@ -74,7 +74,7 @@ public class DiscussionController {
             Discussion d = new Discussion(sender, receiver, destinataire.getMessage()) ;
 
             this.discussionService.saveDiscussion(d);
-            this.discussionService.send_notif(sender, destinataire);
+            //this.discussionService.send_notif(sender, destinataire);
 
             Response res = new Response("message envoyé", false, null);
             return new ResponseEntity<Response>(res, HttpStatus.OK);
@@ -96,7 +96,7 @@ public class DiscussionController {
             Message m = new Message(UUID.randomUUID().toString(), LocalDateTime.now(), sender.getIdUser(), destinataire.getMessage(), d.getIdDiscussion());
 
             this.messageRepository.save(m);
-            this.discussionService.send_notif(sender, destinataire);
+            //this.discussionService.send_notif(sender, destinataire);
 
             Response res = new Response("message envoyé", false, null);
             return new ResponseEntity<Response>(res, HttpStatus.OK);
@@ -107,7 +107,7 @@ public class DiscussionController {
                 Discussion d = new Discussion(sender, receiver, destinataire.getMessage()) ;
 
                 this.discussionService.saveDiscussion(d);
-                this.discussionService.send_notif(sender, destinataire);
+                //this.discussionService.send_notif(sender, destinataire);
                 
                 Response res = new Response("message envoyé", false, null);
                 return new ResponseEntity<Response>(res, HttpStatus.OK);
