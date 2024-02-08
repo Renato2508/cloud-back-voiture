@@ -45,6 +45,7 @@ public class SecurityConfig {
       .authorizeHttpRequests(req -> {
         req
           .requestMatchers("/annonce/valides","/login/**","/free/**","/voitures/**","/annonce/all","/annonce/filter").permitAll()
+          .requestMatchers("/detail/marca", "/detail/model").permitAll()
           .anyRequest()
           .authenticated(); // Exige une authentification pour toutes les autres requêtes
       })
