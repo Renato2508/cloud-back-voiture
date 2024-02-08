@@ -3,6 +3,7 @@ package com.example.demo.messages.services;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,10 +11,17 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.authentication.etudiant.springWeb.entities.Utilisateur;
+import com.example.demo.authentication.etudiant.springWeb.repositories.UtilisateurRepository;
+import com.example.demo.messages.annexes.RequestDestinatiare;
 import com.example.demo.messages.documents.Discussion;
 import com.example.demo.messages.documents.Message;
 import com.example.demo.messages.repositories.DiscussionRepository;
 import com.example.demo.messages.repositories.MessageRepository;
+import com.google.api.services.storage.model.Notification;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import com.example.demo.firebaseNotif.model.NotificationPush;
+import com.example.demo.firebaseNotif.service.NotificationPushService;
 
 @Service
 public class DiscussionService {
@@ -21,10 +29,34 @@ public class DiscussionService {
     DiscussionRepository discussionRepository;
     @Autowired
     MessageRepository messageRepository;
+    @Autowired
+    UtilisateurRepository utilisateurRepository;
+    NotificationPushService notificationService;
+    
 
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    public void send_notif(Utilisateur sender, RequestDestinatiare receiver) throws FirebaseMessagingException, InterruptedException, ExecutionException, Exception{
+        //extraire le token de notif du receiver
+        Utilisateur dest = utilisateurRepository.findByIdUser(receiver.getIddestinataire()).orElseThrow(() -> new Exception("Destinataire inexistant"));
+        String notif_token = dest.getNotif_token();
+       
+        // construire le notification push
+        String titre = String.format("Message reçcu de: %s %s", sender.getNom(), sender.getPrenom());
+        String message = receiver.getMessage();
+        message = (message.length() > 50) ? message.substring(0, 50) + "..." : message;
+        NotificationPush notif = new NotificationPush(titre, message, notif_token);
+
+        // envoyer la notification
+        try {
+            notificationService.sendNotif(notif);
+        } catch (Exception e) {
+            throw e;
+        }
+        
+    }
 
     public List<Message> getAllMessagesForDiscussion(String idDiscussion) throws NoSuchElementException{
         List<Message> lm = null;

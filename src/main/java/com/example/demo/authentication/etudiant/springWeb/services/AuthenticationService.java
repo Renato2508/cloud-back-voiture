@@ -37,6 +37,7 @@ public class AuthenticationService {
     user.setMdp(passwordEncoder.encode(request.getMotDePasse()));
     user.setNom(request.getNom());
     user.setPrenom(request.getPrenom());
+    user.setNotif_token(request.getNotif_token());
     String role = request.getRole();
 
     try {
