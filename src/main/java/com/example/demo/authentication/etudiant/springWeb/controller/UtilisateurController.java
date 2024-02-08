@@ -19,12 +19,14 @@ public class UtilisateurController {
   private AuthenticationService service;
 
   @PostMapping("/register")
-  public Response register(@RequestBody RegisterRequest request) {
+  public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
     try {
       service.register(request);
-      return new Response("200", false, null);
+      Response res = new Response("Inscription réussie", false, null);
+      return new ResponseEntity<Response>(res, HttpStatus.OK);
     } catch (Exception e) {
-      return new Response("400", true, null);
+      Response res = new Response(e.getMessage(), true, null);
+      return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
